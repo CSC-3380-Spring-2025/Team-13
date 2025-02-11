@@ -1,10 +1,10 @@
 # [Name of the Project] : [Team Number]
 # Members
-Project Manager: [Nene F] ([nafll3])\
+Project Manager: [Nene F] ([nfall3])\
 Communications Lead: [Lynx (Tyler L)] ([tylerlallande])\
 Git Master: [Kevin R] ([punnpunn11])\
 Design Lead: [Taya D] ([t-soleil])\
-Quality Assurance Tester:[Bryce M] ([Bryce Morris])\
+Quality Assurance Tester:[Bryce M] ([thebrycemorris])\
 
 
 # About Our Software
