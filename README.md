@@ -1,4 +1,4 @@
-# [Name of the Project] : [Team Number]
+# [No Name Yet] : [Team-13]
 # Members
 Project Manager: [Nene F] ([nfall3])\
 Communications Lead: [Lynx (Tyler L)] ([tylerlallande])\
@@ -9,7 +9,7 @@ Quality Assurance Tester:[Bryce M] ([thebrycemorris])\
 
 # About Our Software
 
-Describe a little about what the project is about here.
+We are creating a music streaming website (Will add more)
 ## Platforms Tested on
 - MacOS
 - Android
