@@ -1,4 +1,4 @@
-# [No Name Yet] : [Team-13]
+# [Impressions Audio] : [Team-13]
 # Members
 Project Manager: [Nene F] ([nfall3])\
 Communications Lead: [Lynx (Tyler L)] ([tylerlallande])\
@@ -8,8 +8,9 @@ Quality Assurance Tester:[Bryce M] ([thebrycemorris])\
 
 
 # About Our Software
+We developing a music streaming website that provides an interactive and unique experience for its users. We are going to focus on user engagement, music discovery, and user-based content. Our goal is to create a streaming platform where users can share and experience music in a more personal and social way.
 
-We are creating a music streaming website (Will add more)
+
 ## Platforms Tested on
 - MacOS
 - Android
