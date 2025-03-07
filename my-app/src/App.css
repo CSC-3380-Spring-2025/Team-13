@@ -24,6 +24,13 @@
   color: white;
 }
 
+.Imp-logo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: fixed;
+  animation: none;
+}
+
 .App-link {
   color: #61dafb;
 }

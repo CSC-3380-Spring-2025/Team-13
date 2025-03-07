@@ -1,24 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-//import imp from './imp audito.png';
+//import logo from './logo.svg';
+import imp from './Home.png';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://youtube.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img src={imp} className="Imp-logo" alt="custom logo" />
+        
+        
       </header>
     </div>
   );
