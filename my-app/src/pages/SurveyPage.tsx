@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function SurveyPage() {
+const SurveyPage = () => {
   return (
-    <div>
-      
-    </div>
+    <div>Survey Page</div>
   )
 }
+
+export default SurveyPage

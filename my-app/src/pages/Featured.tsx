@@ -1,10 +1,9 @@
 import React from 'react'
 
-export default function Featured() {
+const Featured = () => {
   return (
-    <div>
-      
-    </div>
-  )
+    <div>Featured</div>
+  );
 }
 
+export default Featured

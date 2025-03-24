@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ConcertsPage() {
+const ConcertsPage = () => {
   return (
-    <div>
-      
-    </div>
+    <div>Concerts Page</div>
   )
 }
+
+export default ConcertsPage

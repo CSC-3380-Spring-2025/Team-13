@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function LoginPage() {
+const LoginPage = () => {
   return (
-    <div>
-      
-    </div>
+    <div className='login-container'>Login Page</div>
   )
 }
+
+export default LoginPage

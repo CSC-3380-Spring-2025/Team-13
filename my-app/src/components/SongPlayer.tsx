@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function SongPlayer() {
+const SongPlayer = () => {
   return (
-    <div>
-      
-    </div>
+    <div>SongPlayer</div>
   )
 }
+
+export default SongPlayer

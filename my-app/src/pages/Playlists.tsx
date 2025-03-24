@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Playlists() {
+const Playlists = () => {
   return (
-    <div>
-      
-    </div>
-  )
+    <div>Playlists</div>
+  );
 }
+
+export default Playlists
