@@ -33,4 +33,29 @@ if (connection){
   }
 }
 
+async function checkForUser(email: string){
+  try{
+    const connection = await pool.getConnection();
+
+    const query = "Select username, email and password from the users email = ?";
+    const [rows] = await connection.execute( query, [email]);
+    connection.release();
+
+
+    if((rows as any [].length > 0){
+      console.log("Successfully found user.", rows);
+      return rows[0];
+
+    }else{
+      console.log("User not found, try a different email.");
+      return null;
+    }
+  }catch (error){
+    console.error("Error in checking for user information", (error as Error).message);
+    return null;
+  }
+}
+testConnection();
+export { pool, checkUser };
+
 
