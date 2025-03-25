@@ -3,30 +3,34 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-async function connectToDatabase(){
-try{
-
-const connection = await mysql.createConnection({
+const pool = mysql.createPool({
 
 host: process.env.DATABASE_HOST,
 user: process.env.DATABASE_USER,
 password: process.env.DATABASE_PASSWORD,
 database: process.env.DATABASE_NAME,
-port: Number(process.env.DATABASE_PORT) || 3306,
+port: Number(process.env.DATABASE_PORT) || 3306, //Default for MySQL
+
+  waitForConnections: true,
+  connectionLimit: 5,
+  queueLimit: 1,
 });
 
-console.log("Connected to MySQL Database");
-
-} catch (error){
-
-
-if (error instanceof Error){
-console.error("Error in connecting to MySQL database:", error.message);
+async function testConnection(){
+  try{
+    const connection = await pool.getConnection();
+  
+if (connection){
+  console.log("Successfully connected to MySQL Database");
+  connection.release();
 }else{
-console.error("Error in connecting to MySQL database:", String(error));
+  console.log("Was not able to connect to MySQL");
+
 }
-}
+  }catch (error){
+    console.error("Unable to connect to MySQL:", (error as Error).message);
+
+  }
 }
 
-connectToDatabase();
-export default connectToDatabase;
+
