@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/ConcertsPage.css'
 
 const ConcertsPage = () => {
   return (
-    <div>Concerts Page</div>
+    <div className='concert-container'>Concerts Page</div>
   )
 }
 

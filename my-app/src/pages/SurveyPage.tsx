@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/SurveyPage.css'
 
 const SurveyPage = () => {
   return (
-    <div>Survey Page</div>
+    <div className='survey-container'>Survey Page</div>
   )
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const NavbarButton = () => {
   return (
-    <div>H</div>
+    <div className='nav-container'>Impressions</div>
     
   )
 }

@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/Home.css'
 
 const Home = () => {
   return (
-    <div className='screen-container'></div>
+    <div className='home-container'>Home</div>
 
   );
 }

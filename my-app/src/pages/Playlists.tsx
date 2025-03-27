@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/Playlists.css'
 
 const Playlists = () => {
   return (
-    <div>Playlists</div>
+    <div className='playlist-container'>Playlists</div>
   );
 }
 

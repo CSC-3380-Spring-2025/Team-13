@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/Featured.css'
 
 const Featured = () => {
   return (
-    <div>Featured</div>
+    <div className='featured-container'>Featured</div>
   );
 }
 
