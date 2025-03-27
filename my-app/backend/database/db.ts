@@ -30,7 +30,7 @@ connection.connect((err) => {
   const sql = "SELECT * FROM users WHERE email = ?";
   
   connection.query(sql,  [userEmail], (error: any, results: IUserRow[]) =>{
-    if (error){
+    if (err){
     console.log("Unable to connect to the query", queryErr.message);
     return;
 }
