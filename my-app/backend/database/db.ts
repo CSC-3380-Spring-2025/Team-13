@@ -31,7 +31,7 @@ connection.connect((error) => {
   
   connection.query(sql,  [userEmail], (error: any, results: IUserRow[]) =>{
     if (error){
-    console.log("Unable to connect to the query", queryErr.message);
+    console.log("Unable to connect to the query", error.message);
     return;
 }
 if (results.length > 0){
