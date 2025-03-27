@@ -20,9 +20,9 @@ interface IUserRow{
 const userEmail = "user@testexample.com";
 
 
-connection.connect((err) => {
-  if(err){
-    console.log("Unable to connect to MySQL", err);
+connection.connect((error) => {
+  if(error){
+    console.log("Unable to connect to MySQL", error);
     return;
   }
   
@@ -30,7 +30,7 @@ connection.connect((err) => {
   const sql = "SELECT * FROM users WHERE email = ?";
   
   connection.query(sql,  [userEmail], (error: any, results: IUserRow[]) =>{
-    if (err){
+    if (error){
     console.log("Unable to connect to the query", queryErr.message);
     return;
 }
@@ -42,9 +42,9 @@ if (results.length > 0){
 }
 
   
-connection.end((err) => {
-   if(endeErr){
-    console.log("Unable to close connection", endErr.message);
+connection.end((error) => {
+   if(error){
+    console.log("Unable to close connection", Err.message);
     return;
   
 }
