@@ -44,7 +44,7 @@ if (results.length > 0){
   
 connection.end((error) => {
    if(error){
-    console.log("Unable to close connection", Err.message);
+    console.log("Unable to close connection", error.message);
     return;
   
 }
