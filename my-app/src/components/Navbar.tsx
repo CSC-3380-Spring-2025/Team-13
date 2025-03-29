@@ -30,7 +30,7 @@ const Navbar = () => {
         <a onClick={handleSettings} className="settings-link">Settings</a>
       </div>
       <div className="signout-wrapper">
-        <a onClick={handleSignOut} className="signout-link">Log in/Sign Out</a>
+        <a onClick={handleSignOut} className="signout-link">Sign Out</a>
       </div>
     </div>
   );
