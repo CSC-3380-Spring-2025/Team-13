@@ -1,0 +1,6 @@
+.settings-container{
+    width: calc(100% - 100px);
+    height: 100%;   
+    background-color: #42546e;
+    border-radius: 20px 0 0 20px;
+}

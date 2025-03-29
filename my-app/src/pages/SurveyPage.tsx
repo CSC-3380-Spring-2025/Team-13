@@ -3,7 +3,7 @@ import '../styles/SurveyPage.css'
 
 const SurveyPage = () => {
   return (
-    <div className='survey-container'>Survey Page</div>
+    <div className='survey-container'></div>
   )
 }
 

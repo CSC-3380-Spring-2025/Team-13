@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import './App.css';
 import './styles/Main.css';
 import Navbar from './components/Navbar';
@@ -10,10 +10,10 @@ import ConcertsPage from './pages/ConcertsPage';
 import LoginPage from './pages/LoginPage';
 //import SongPlayer from './components/SongPlayer';
 import Home from './pages/Home';
+import Settings from './pages/Settings';
 
 function App() {
   return (
-    <Router>
       <div className="main-body">
         <Navbar />
         <Routes>
@@ -23,9 +23,9 @@ function App() {
           <Route path="/ConcertsPage" element={<ConcertsPage />} />
           <Route path="/SurveyPage" element={<SurveyPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/Settings" element={<Settings />} />
         </Routes>
     </div>
-    </Router>
   );
 }
 

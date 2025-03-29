@@ -3,7 +3,7 @@ import '../styles/Featured.css'
 
 const Featured = () => {
   return (
-    <div className='featured-container'>Featured</div>
+    <div className='featured-container'></div>
   );
 }
 
