@@ -3,9 +3,7 @@ import '../styles/LoginPage.css';
 
 const LoginPage = () => {
   return (
-    <div className='login-container'>
-      Login Page
-    </div>
+    <div className='login-container'></div>
   );
 };
 

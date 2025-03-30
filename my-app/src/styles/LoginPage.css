@@ -1,6 +1,6 @@
 .login-container {
     width: calc(100% - 100px);
     height: 100%;   
-    background-color: paleturquoise;
+    background-color: rgb(119, 82, 82);
     border-radius: 20px;
 }

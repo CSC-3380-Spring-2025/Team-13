@@ -3,7 +3,7 @@ import '../styles/Playlists.css'
 
 const Playlists = () => {
   return (
-    <div className='playlist-container'>Playlists</div>
+    <div className='playlist-container'></div>
   );
 }
 
