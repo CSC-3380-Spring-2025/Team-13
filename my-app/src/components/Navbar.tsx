@@ -27,10 +27,10 @@ const Navbar = () => {
         <li><Link to="/surveypage">Survey Page</Link></li>
       </ul>
       <div className="settings-wrapper">
-        <a onClick={handleSettings} className="settings-link">Settings</a>
+        <button onClick={handleSettings} className="settings-link">Settings</button>
       </div>
       <div className="signout-wrapper">
-        <a onClick={handleSignOut} className="signout-link">Sign Out</a>
+        <button onClick={handleSignOut} className="signout-link">Sign Out</button>
       </div>
     </div>
   );
