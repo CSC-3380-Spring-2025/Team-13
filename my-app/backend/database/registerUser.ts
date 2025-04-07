@@ -9,8 +9,10 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question("👤 Enter your username: ", (username: string) => {
-  rl.question("📧 Enter your email: ", (email: string) => {
+rl.question("Enter your username: ", (username: string) => {
+  rl.question("Enter your email: ", (email: string) => {
+
+    
     const connection = mysql.createConnection({
       host: process.env.DATABASE_HOST || "localhost",
       user: process.env.DATABASE_USER || "root",
