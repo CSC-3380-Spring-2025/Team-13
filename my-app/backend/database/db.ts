@@ -17,7 +17,6 @@ interface IUserRow{
   email: string;
   created_at: string;
 }
-const userEmail = "user@testexample.com";
 
 
 connection.connect((error) => {
