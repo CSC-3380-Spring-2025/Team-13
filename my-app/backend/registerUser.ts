@@ -3,13 +3,13 @@ const dotenv = require ("dotenv");
 const readline = require ("readline");
 
 dotenv.config();
-const r1 = readline.creatInterface({
-  input: process.stdin
+const rl = readline.createInterface({
+  input: process.stdin,
     output: process.stdout,
   });
 
-r1. question(" Enter your username:", (username: string) => {
-  r1.question("Enter your email:", (email: string) => {
+rl. question(" Enter your username: ", (username: string) => {
+  rl.question("Enter your email: ", (email: string) => {
 
   
 const connection = mysql.createConnection({
