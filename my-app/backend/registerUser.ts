@@ -29,7 +29,7 @@ connection.connect((error) => {
   
 console.log("Successfully connected to MySQL Database");
   const sql = "INSERT INTO users (username, email) VALUES (?,?)";
-  const values = [newUsername, newEmail};
+  const values = [username, email};
 
 connection.query(sql,  values, (error: any, result: any) =>{
     if (error){
