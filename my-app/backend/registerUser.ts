@@ -1,7 +1,17 @@
 const mysql = require ("mysql2");
 const dotenv = require ("dotenv");
+const readline = require ("readline");
 
 dotenv.config();
+const r1 = readline.creatInterface({
+  input: process.stdin
+    output: process.stdout,
+  });
+
+r1. question(" Enter your username:", (username: string) => {
+  r1.question("Enter your email:", (email: string) => {
+
+  
 const connection = mysql.createConnection({
   host: process.env.DATABASE_HOST || "localhost",
   user: process.env.DATABASE_USER || "root",
@@ -10,9 +20,6 @@ const connection = mysql.createConnection({
   port: Number(process.env.DATABASE_PORT) || 3306, // Default MySQL 
   
 });
-
-const newuserEmail = "user@testexample.com";
-const newuserName = "guest_user";
 
 connection.connect((error) => {
   if(error){
@@ -26,11 +33,19 @@ console.log("Successfully connected to MySQL Database");
 
 connection.query(sql,  values, (error: any, result: any) =>{
     if (error){
-    console.log("Error in closing connection", error.message);
+    console.log("Error inserting new user", error.message);
 } else{
-      console.log(" MySQL database connection has closed");
+      console.log("Successfully registered user");
 
    }
+
+  connection.end((error) => {
+   if(error){
+    console.log("Unable to close connection", error.message);
+    return;
+  
+}
+  console.log("Connection closed");
     });
   });
 });
