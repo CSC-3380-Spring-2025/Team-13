@@ -1,10 +1,10 @@
-# [Name of the Project] : [Team Number]
+# Impressions Audio : Team 13
 # Members
-Project Manager: [Name] ([GitHub Name])\
-Communications Lead: [Name] ([GitHub Name])\
-Git Master: [Name] ([GitHub Name])\
-Design Lead: [Name] ([GitHub Name])\
-Quality Assurance Tester: [Name] ([GitHub Name])
+Project Manager: Nene Fall (nfall3)\
+Communications Lead: Lynx (Tyler L) (tylerlallande)\
+Git Master: Kevin Ray (punnpunn11)\
+Design Lead: Taya Dickens (t-soleil)\
+Quality Assurance Tester: Bryce Morris (thebrycemorris)\
 
 # About Our Software
 
