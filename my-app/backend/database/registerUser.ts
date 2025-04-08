@@ -16,7 +16,7 @@ rl.question("Enter your username: ", (username: string) => {
     const connection = mysql.createConnection({
       host: process.env.DATABASE_HOST || "localhost",
       user: process.env.DATABASE_USER || "root",
-      password: process.env.DATABASE_PASSWORD || "",
+      password: process.env.DATABASE_PASSWORD || "", //Password is hidden
       database: process.env.DATABASE_NAME || "node_connect",
       port: Number(process.env.DATABASE_PORT) || 3306, // Default in MySQL
     });
