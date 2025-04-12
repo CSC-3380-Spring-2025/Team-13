@@ -14,8 +14,9 @@ const connection = mysql.createConnection({
 interface IUserRow{
   id_number: number;
   email: string;
-  password: string
   created_at: string;
+  password: string
+  
 }
 
 
