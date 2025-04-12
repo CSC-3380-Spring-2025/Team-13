@@ -1,6 +1,7 @@
 const mysql = require("mysql2");
 const dotenv = require("dotenv");
 const readline = require("readline");
+const bcrypt = require("bycrypt");
 
 dotenv.config();
 
@@ -9,8 +10,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question("Enter your username: ", (username: string) => {
-  rl.question("Enter your email: ", (email: string) => {
+rl.question("Enter your email: ", (email: string) => {
+  rl.question("Enter your password: ", (password: string) => {
 
     
     const connection = mysql.createConnection({
@@ -29,8 +30,17 @@ rl.question("Enter your username: ", (username: string) => {
 
       console.log(" Successfully connected to MySQL Database");
 
-      const sql = "INSERT INTO users (username, email) VALUES (?, ?)";
-      const values = [username, email];
+      const saltRounds = 10;
+      bcrypt.hash(password, saltRounds, (hashError: any, hash: string) =>{
+        if(hashError({
+          console.log("Hashing password error". hashError.message);
+        rl.close()
+        return;
+        }
+      }
+
+      const sql = "INSERT INTO users (email, password) VALUES (?, ?)";
+      const values = [email, hash];
 
       connection.query(sql, values, (error: any, result: any) => {
         if (error) {
