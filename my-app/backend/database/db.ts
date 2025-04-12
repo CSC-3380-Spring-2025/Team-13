@@ -13,8 +13,8 @@ const connection = mysql.createConnection({
 
 interface IUserRow{
   id_number: number;
-  username: string;
   email: string;
+  password: string
   created_at: string;
 }
 
@@ -24,9 +24,12 @@ connection.connect((error) => {
     console.log("Unable to connect to MySQL", error);
     return;
   }
+
+  const userEmail = "user@testexample.com";
   
   console.log("Successfully connected to MySQL Database");
   const sql = "SELECT * FROM users WHERE email = ?";
+ 
   
   connection.query(sql,  [userEmail], (error: any, results: IUserRow[]) =>{
     if (error){
