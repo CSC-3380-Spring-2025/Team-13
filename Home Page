@@ -1,0 +1,215 @@
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+import {
+  Activity,
+  ArrowDownRight,
+  ArrowUpRight,
+  BarChart3,
+  CreditCard,
+  PieChart,
+  ShoppingCart,
+  TrendingUp,
+  Users,
+} from "lucide-react";
+import React from "react";
+
+export default function Dashboard(): JSX.Element {
+  // Sample data for the dashboard cards
+  const dashboardData = [
+    {
+      title: "Total Revenue",
+      value: "$45,231.89",
+      change: "+20.1%",
+      isPositive: true,
+      icon: <CreditCard className="h-4 w-4 text-muted-foreground" />,
+      progress: 78,
+    },
+    {
+      title: "Subscriptions",
+      value: "+2350",
+      change: "+180.1%",
+      isPositive: true,
+      icon: <Users className="h-4 w-4 text-muted-foreground" />,
+      progress: 65,
+    },
+    {
+      title: "Sales",
+      value: "+12,234",
+      change: "+19.5%",
+      isPositive: true,
+      icon: <ShoppingCart className="h-4 w-4 text-muted-foreground" />,
+      progress: 49,
+    },
+    {
+      title: "Active Users",
+      value: "+573",
+      change: "-2.5%",
+      isPositive: false,
+      icon: <Users className="h-4 w-4 text-muted-foreground" />,
+      progress: 39,
+    },
+    {
+      title: "Conversion Rate",
+      value: "3.2%",
+      change: "+12.2%",
+      isPositive: true,
+      icon: <Activity className="h-4 w-4 text-muted-foreground" />,
+      progress: 32,
+    },
+    {
+      title: "Avg. Order Value",
+      value: "$45.82",
+      change: "+12.3%",
+      isPositive: true,
+      icon: <TrendingUp className="h-4 w-4 text-muted-foreground" />,
+      progress: 60,
+    },
+    {
+      title: "Monthly Growth",
+      value: "12.5%",
+      change: "+4.3%",
+      isPositive: true,
+      icon: <BarChart3 className="h-4 w-4 text-muted-foreground" />,
+      progress: 55,
+    },
+    {
+      title: "Customer Retention",
+      value: "89.2%",
+      change: "+1.2%",
+      isPositive: true,
+      icon: <PieChart className="h-4 w-4 text-muted-foreground" />,
+      progress: 89,
+    },
+    {
+      title: "Sessions",
+      value: "32,592",
+      change: "-8.4%",
+      isPositive: false,
+      icon: <Activity className="h-4 w-4 text-muted-foreground" />,
+      progress: 42,
+    },
+  ];
+
+  return (
+    <main className="bg-transparent flex flex-col items-center justify-center w-full p-6">
+      <div className="w-full max-w-7xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {dashboardData.map((item, index) => (
+            <Card key={index} className="shadow-sm">
+              <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <CardTitle className="text-sm font-medium">
+                  {item.title}
+                </CardTitle>
+                {item.icon}
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-col space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-2xl font-bold">{item.value}</span>
+                    <Badge
+                      variant={item.isPositive ? "outline" : "destructive"}
+                      className="flex items-center"
+                    >
+                      {item.isPositive ? (
+                        <ArrowUpRight className="h-3 w-3 mr-1 text-emerald-500" />
+                      ) : (
+                        <ArrowDownRight className="h-3 w-3 mr-1 text-red-500" />
+                      )}
+                      {item.change}
+                    </Badge>
+                  </div>
+                  <Progress value={item.progress} className="h-2" />
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </main>
+  );
+}
+
+
+
+module.exports = {
+  content: [
+    "./src/**/*.{html,js,ts,jsx,tsx}",
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: [
+          "ui-sans-serif",
+          "system-ui",
+          "sans-serif",
+          '"Apple Color Emoji"',
+          '"Segoe UI Emoji"',
+          '"Segoe UI Symbol"',
+          '"Noto Color Emoji"',
+        ],
+      },
+      keyframes: {
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
+      animation: {
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+    },
+    container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+  },
+  plugins: [],
+  darkMode: ["class"],
+};
+
+
