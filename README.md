@@ -18,7 +18,7 @@ We developing a music streaming website that provides an interactive and unique 
 - Linux
 - Windows
 # Important Links
-Kanban Board: https://github.com/users/nfall3/projects/2/views/1?system_template=kanban \
+Kanban Board: \
 Designs: [link]\
 Styles Guide(s): [link]
 
