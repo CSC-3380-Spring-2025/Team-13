@@ -18,7 +18,7 @@ We developing a music streaming website that provides an interactive and unique 
 - Linux
 - Windows
 # Important Links
-Kanban Board: \
+Kanban Board: https://github.com/orgs/CSC-3380-Spring-2025/projects/39\
 Designs: [link]\
 Styles Guide(s): [link]
 
