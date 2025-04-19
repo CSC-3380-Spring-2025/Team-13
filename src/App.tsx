@@ -1,26 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Login from './Login';
+import Signup from './Signup';
 
 function App() {
+  const [user, setUser] = useState<string | null>(null);
+  const [showLogin, setShowLogin] = useState(true); 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+  
+
+      {user ? (
+        <>
+          <p>Welcome, {user}!</p>
+          <button onClick={() => setUser(null)}>Log out</button>
+        </>
+      ) : (
+        <>
+          {showLogin ? (
+            <>
+              <Login setUser={setUser} />
+              <p>
+                Don't have an account?{" "}
+                <button onClick={() => setShowLogin(false)}>Sign up</button>
+              </p>
+            </>
+          ) : (
+            <>
+              <Signup />
+              <p>
+                Already have an account?{" "}
+                <button onClick={() => setShowLogin(true)}>Login</button>
+              </p>
+            </>
+          )}
+        </>
+      )}
     </div>
   );
 }
 
 export default App;
+
