@@ -22,7 +22,7 @@ const Signup = () => {
       email: email,
       password: password,
     };
-    fetch("http://localhost:3001/register", {
+    fetch("http://localhost:5000/api/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
