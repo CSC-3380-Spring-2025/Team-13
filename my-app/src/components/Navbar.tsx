@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleSignOut = () => {
-    localStorage.removeItem('token'); // example
+    localStorage.removeItem('token');
     navigate('/LoginPage');
   };
 
@@ -21,10 +21,11 @@ const Navbar = () => {
       <h1 className="navbar-title">Impressions Audio</h1>
       <ul className="navbar-links">
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/featured">Featured</Link></li>
+        <li><Link to="/searchpage">Search</Link></li>
+        <li><Link to="/featured">Feed</Link></li>
         <li><Link to="/playlists">Playlists</Link></li>
-        <li><Link to="/concertspage">Concerts Page</Link></li>
-        <li><Link to="/surveypage">Survey Page</Link></li>
+        <li><Link to="/concertspage">Concerts</Link></li>
+        <li><Link to="/surveypage">Survey</Link></li>
       </ul>
       <div className="settings-wrapper">
         <button onClick={handleSettings} className="settings-link">Settings</button>

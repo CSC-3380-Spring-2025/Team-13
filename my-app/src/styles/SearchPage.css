@@ -1,0 +1,30 @@
+.search-container {
+    width: calc(100% - 100px);
+    height: 100%;
+    background: linear-gradient(360deg,rgb(127, 171, 253), rgb(252, 140, 149));
+    border-radius: 20px;
+    box-shadow: 2px 0 8px rgb(0, 0, 0);
+}
+
+.search-box{
+    margin-top: 20px;
+    padding: 30px;
+}
+
+.search-box2{
+    padding: 10px 350px 10px 10px;
+    margin-left: 550px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 15px;
+}
+
+.search-box input{
+    text-align: left;
+    font-size: 1rem;
+}
+
+.search-button{
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(3, 196, 255, 0.267);
+}
