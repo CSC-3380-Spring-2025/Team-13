@@ -13,7 +13,7 @@ const Signup = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setError("Passwords don't match.");
+      setError("Passwords don't match");
       setMessage('');
       return;
     }
@@ -22,30 +22,31 @@ const Signup = () => {
       email: email,
       password: password,
     };
-    fetch("http://localhost:5000/api/signup", {
+    fetch("http://localhost:3001/signup", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(Data)
+      body: JSON.stringify({ email, password})
 
     
     })
       .then((res) => {
         if (res.status === 200) {
-          setMessage("Signup successful! Please Login");
+          setMessage("Signup Successful! Please Login");
           setError("");
         } else if (res.status === 409) {
-          setError("Email already registered.");
+          setError("Email already registered");
           setMessage("");
         } else {
-          setError("Signup failed.");
+          setError("Signup failed");
           setMessage("");
         }
       })
       .catch((error) => {
         console.error("Signup failed:", error);
-        setError("Signup failed.");
+        setError("Signup failed");
         setMessage("");
       });
   };
