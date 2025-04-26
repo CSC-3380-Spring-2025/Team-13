@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "react-router-dom": "^7.4.0"
+  },
+  "name": "team-13",
+  "version": "1.0.0",
+  "description": "Project Manager: [Nene F] ([nfall3])\\ Communications Lead: [Lynx (Tyler L)] ([tylerlallande])\\ Git Master: [Kevin R] ([punnpunn11])\\ Design Lead: [Taya D] ([t-soleil])\\ Quality Assurance Tester:[Bryce M] ([thebrycemorris])\\",
+  "main": "index.js",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CSC-3380-Spring-2025/Team-13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CSC-3380-Spring-2025/Team-13/issues"
+  },
+  "homepage": "https://github.com/CSC-3380-Spring-2025/Team-13#readme"
+}
