@@ -4,17 +4,11 @@
     background: linear-gradient(360deg,rgb(127, 171, 253), rgb(252, 140, 149));
     border-radius: 20px;
     box-shadow: 2px 0 8px rgb(0, 0, 0);
-}
-
-h2{
-    display: flex;
-    padding: 15px 15px 15px 700px;
-    color: white;
+    text-align: center;
 }
 
 .home-container button {
-    margin-top: 20px;
-    margin: 70px 70px 70px 800px;
+    margin-top: 100px;
     padding: 12px 24px;
     font-size: 1rem;
     font-weight: bold;
@@ -25,3 +19,8 @@ h2{
     cursor: pointer;
     transition: background 0.3s;
   }
+
+.home-container h2{
+    color: white;
+    padding-top: 100px;
+}

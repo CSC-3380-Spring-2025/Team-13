@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
-//import NavbarButton from './NavbarButton';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -31,7 +30,7 @@ const Navbar = () => {
         <button onClick={handleSettings} className="settings-link">Settings</button>
       </div>
       <div className="signout-wrapper">
-        <button onClick={handleSignOut} className="signout-link">Sign Out</button>
+        <button onClick={handleSignOut} className="signout-link">Login/Signout</button>
       </div>
     </div>
   );

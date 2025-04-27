@@ -39,7 +39,7 @@
     border-color: #6e3939;
     background-color: #d47e7e7c;
     display: block;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.6s ease, color 0.6s ease;
   }
   
   .navbar-links li a:hover {
@@ -58,7 +58,7 @@
     border-radius: 8px;
     display: block;
     background: #d47e7e7c;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.6s ease, color 0.6s ease;
   }
   
   .settings-link:hover {
@@ -77,7 +77,7 @@
     border-radius: 8px;
     display: block;
     background: #d47e7e7c;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.6s ease, color 0.6s ease;
   }
   
   .signout-link:hover {

@@ -13,19 +13,19 @@ export default function Concerts() {
 
   return (
     <div className='concert-container'>
-    <div className="p-6 bg-gray-800 text-white">
+    <div className="search-box">
       <input
         type="text"
-        placeholder="Enter city..."
+        placeholder="See what's near you"
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        className="p-2 rounded text-black"
+        className="search-box2"
       />
-      <button onClick={getConcerts} className="bg-blue-500 p-2 ml-2">Find Concerts</button>
+      <button onClick={getConcerts} className="search-button">Search</button>
 
       <div>
         {events.map((event: any) => (
-          <div key={event.id} className="p-4 border-b">
+          <div key={event.id} className="song-card">
             <h2>{event.name}</h2>
             <p>{event.dates.start.localDate}</p>
           </div>
