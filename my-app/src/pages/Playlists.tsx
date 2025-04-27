@@ -1,9 +1,10 @@
 import React from 'react'
+import '../styles/Playlists.css'
 
-export default function Playlists() {
+const Playlists = () => {
   return (
-    <div>
-      
-    </div>
-  )
+    <div className='playlist-container'></div>
+  );
 }
+
+export default Playlists

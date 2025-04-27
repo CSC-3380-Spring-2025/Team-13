@@ -1,10 +1,10 @@
 import React from 'react'
+import '../styles/Featured.css'
 
-export default function Featured() {
+const Featured = () => {
   return (
-    <div>
-      
-    </div>
-  )
+    <div className='featured-container'></div>
+  );
 }
 
+export default Featured

@@ -1,9 +1,13 @@
 import React from 'react'
+import '../styles/Home.css'
 
-export default function Home() {
+const Home = () => {
   return (
-    <div>
-      
+    <div className='home-container'>
+      <h2>Welcome to Impressions Audio!</h2>
+      <button>Explore Now</button>
     </div>
-  )
+  );
 }
+
+export default Home
