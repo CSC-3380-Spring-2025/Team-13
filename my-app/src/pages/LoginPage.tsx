@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import '../styles/LoginPage.css';
 
 interface LoginPageProps {
@@ -11,36 +12,27 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
     setError('');
     setMessage('');
 
-    fetch("http://localhost:3001/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.message === "Login Successful!") {
-          setUser(email);
-          setMessage("Login Successful!");
-        } else if (data.message === "email and password don't match") {
-          setError("Incorrect password");
-        } else if (data.message === "User doesn't exist") {
-          setError("User not found");
-        } else {
-          setError("Login failed");
-        }
-      })
-      .catch((error) => {
-        console.error("Login error:", error);
-        setError("Login failed.");
-      });
+    const auth = getAuth();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      // Holds the users email so it can't be reused
+      setUser(email);
+      setMessage('Login Successful!');
+    } catch (err: any) {
+      console.error('Login error:', err.message);
+      if (err.code === 'auth/user-not-found') {
+        setError('User not found');
+      } else if (err.code === 'auth/wrong-password') {
+        setError('Incorrect password');
+      } else {
+        setError('Login failed');
+      }
+    }
   };
 
   return (

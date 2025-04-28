@@ -1,6 +1,5 @@
 .navbar-container {
-    width: 140px;
-    height: 95.65vh;
+    flex: 1;
     background: linear-gradient(270deg, rgb(252, 140, 149), rgb(127, 171, 253));
     background-color: #383636;
     display: flex;
@@ -18,9 +17,11 @@
     font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 40px;
+    text-align: center;
   }
   
   .navbar-links {
+    flex: 1;
     list-style: none;
     font-weight: bold;
     padding: 0;
@@ -48,10 +49,11 @@
   }
   
   .settings-wrapper{
-    margin-top: 260px;
+    margin-right: auto;
   }
 
   .settings-link {
+    flex: 1;
     color: #ffffff;
     text-decoration: none;
     padding: 10px 12px;
@@ -67,7 +69,7 @@
   }
 
   .signout-wrapper{
-    margin-top: auto;
+    margin-right: auto;
   }
 
   .signout-link {

@@ -21,5 +21,5 @@ def read_root():
 
 @app.get("/search")
 def search_song(query: str):
-    results = spotify.search(q=query, limit=50, type="tracks")
+    results = spotify.search(q=query, limit=20, type="tracks")
     return {"tracks": results["tracks"]["items"]}

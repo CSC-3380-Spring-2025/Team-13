@@ -1,25 +1,31 @@
 import React, { useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import '../styles/SignUpPage.css';
 
 const SignupPage: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
+    setMessage('');
 
+    const auth = getAuth();
     try {
-      const res = await fetch('http://localhost:5000/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await res.json();
-      alert(data.message);
-    } catch (error) {
-      console.error('Signup error:', error);
-      alert('Signup failed. Please try again.');
+      await createUserWithEmailAndPassword(auth, email, password);
+      setMessage('Account created successfully!');
+    } catch (err: any) {
+      console.error('Signup error:', err.message);
+      if (err.code === 'auth/email-already-in-use') {
+        setError('Email already in use');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password should be at least 6 characters');
+      } else {
+        setError('Signup failed');
+      }
     }
   };
 
@@ -42,8 +48,11 @@ const SignupPage: React.FC = () => {
           required
         /><br />
         <button type="submit">Sign Up</button>
+
+        {error && <p className="error-message">{error}</p>}
+        {message && <p className="success-message">{message}</p>}
       </form>
-      </div>
+    </div>
   );
 };
 

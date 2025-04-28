@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
+
 import './App.css';
 import './styles/Main.css';
+import './styles/Profile.css'
+
 import Navbar from './components/Navbar';
 import Playlists from './pages/Playlists';
 import Featured from './pages/Featured';
@@ -13,7 +16,15 @@ import Home from './pages/Home';
 import Settings from './pages/Settings';
 import SearchPage from './pages/SearchPage';
 
-function App() {
+import { initializeApp } from 'firebase/app';
+import { config } from './config/config';
+import AuthRoute from './components/AuthRoute';
+
+initializeApp(config.firebaseConfig);
+
+export interface IApplicationProps {}
+
+const Application: React.FunctionComponent<IApplicationProps> = (props) => {
   const [selectedTrack, setSelectedTrack] = useState<any>(null);
   const [user, setUser] = useState<string | null>(null);
   const [showLogin, setShowLogin] = useState<boolean>(true);
@@ -23,7 +34,10 @@ function App() {
       <div className="main-body">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" 
+          element={<AuthRoute>
+            <Home />
+            </AuthRoute>} />
           <Route path="/SearchPage" element={<SearchPage setSelectedTrack={setSelectedTrack} />} />
           <Route path="/Playlists" element={<Playlists />} />
           <Route path="/Featured" element={<Featured />} />
@@ -34,9 +48,9 @@ function App() {
             path="/LoginPage"
             element={
               user ? (
-                <div style={{ textAlign: 'center', marginTop: '50px' }}>
+                <div className='profile-container'>
                   <h2>Welcome, {user}!</h2>
-                  <button onClick={() => setUser(null)}>Log out</button>
+                  <button className='profile-logoutbutton' onClick={() => setUser(null)}>Log out</button>
                 </div>
               ) : (
                 <div className="login-container">
@@ -67,4 +81,4 @@ function App() {
   );
 }
 
-export default App;
+export default Application
