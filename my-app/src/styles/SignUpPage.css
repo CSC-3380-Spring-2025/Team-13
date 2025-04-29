@@ -1,40 +1,49 @@
 .signup-container {
-    width: 300px;
-    margin: 100px auto;
-    padding: 20px;
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #3c3c3c;
-    text-align: center;
-  }
+  width: 300px;
+  margin: 100px auto;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #3c3c3c;
+  text-align: center;
+}
   
-  .signup-container input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+.signup-container input {
+  width: 90%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
   
-  .signup-container button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color:  rgb(127, 171, 253);
-    color: rgb(255, 255, 255);
-    cursor: pointer;
-  }
+.signup-container button {
+  padding: 10px 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color:  rgb(127, 171, 253);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
   
-  .signup-container button:hover {
-    background-color: #1976d2;
-    transition: background-color 0.6s ease, color 0.6s ease;
-  }
+.signup-container button:hover {
+  background-color: #1976d2;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
 
-  .signup-container h5{
-    color: white;
-    font-size: medium;
-    font-size: 1.8rem;
-    font-weight: lighter;
-  }
+.signup-container h5{
+  color: white;
+  font-size: medium;
+  font-size: 1.8rem;
+  font-weight: lighter;
+}
+
+.signup-container .google-button{
+  background: linear-gradient(rgb(242, 117, 117));
+}
+
+.signup-container google-button:hover{
+  background-color: #f41414;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}

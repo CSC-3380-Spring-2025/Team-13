@@ -3,7 +3,9 @@ import '../styles/Playlists.css'
 
 const Playlists = () => {
   return (
-    <div className='playlist-container'></div>
+    <div className='playlist-container'>
+      <h1>IN PROGRESS</h1>
+    </div>
   );
 }
 

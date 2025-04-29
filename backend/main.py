@@ -6,8 +6,8 @@ import os
 
 app = FastAPI()
 
-CLIENT_ID = "d2f24b7ead2a43ab9847c27be93bcdc4"
-CLIENT_SECRET = "1e781ba379e345a6bd2a94fa7ca8b998"
+CLIENT_ID = "359f07879aba4ce591a56c7b4df31f07"
+CLIENT_SECRET = "7d6b94a684f445b8ad4d04ffd5e6bd25"
 
 spotify = spotipy.Spotify(auth_manager=SpotifyClientCredentials(
     client_id=CLIENT_ID, 

@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const handleSignOut = () => {
     localStorage.removeItem('token');
-    navigate('/LoginPage');
+    navigate('/ProfilePage');
   };
 
   const handleSettings = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
       <ul className="navbar-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/searchpage">Search</Link></li>
-        <li><Link to="/featured">Feed</Link></li>
+        <li><Link to="/feed">Feed</Link></li>
         <li><Link to="/playlists">Playlists</Link></li>
         <li><Link to="/concertspage">Concerts</Link></li>
         <li><Link to="/surveypage">Survey</Link></li>
@@ -30,7 +30,7 @@ const Navbar = () => {
         <button onClick={handleSettings} className="settings-link">Settings</button>
       </div>
       <div className="signout-wrapper">
-        <button onClick={handleSignOut} className="signout-link">Login/Signout</button>
+        <button onClick={handleSignOut} className="signout-link">Profile</button>
       </div>
     </div>
   );

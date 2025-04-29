@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'; // NEW for Firestore
+import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.css';
 
 interface LoginPageProps {
@@ -11,18 +13,34 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [authing, setAuthing] = useState(false);
 
+  const auth = getAuth();
+  const db = getFirestore(); // NEW
+  const navigate = useNavigate();
+
+  // Standard email/password login
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
     setMessage('');
 
-    const auth = getAuth();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // Holds the users email so it can't be reused
-      setUser(email);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // ✅ Fetch username from Firestore after login
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        setUser(data.username);
+        localStorage.setItem('currentUsername', data.username);
+      } else {
+        console.error('User document does not exist');
+      }
+
       setMessage('Login Successful!');
+      navigate('/ProfilePage');
     } catch (err: any) {
       console.error('Login error:', err.message);
       if (err.code === 'auth/user-not-found') {
@@ -35,6 +53,42 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
     }
   };
 
+  // Google login
+  const signInWithGoogle = async () => {
+    setAuthing(true);
+
+    try {
+      const response = await signInWithPopup(auth, new GoogleAuthProvider());
+      const user = response.user;
+
+      // ✅ Check if user already exists in Firestore
+      const userRef = doc(db, "users", user.uid);
+      const userDoc = await getDoc(userRef);
+
+      if (!userDoc.exists()) {
+        // If no user document exists, create one with displayName or email
+        const username = user.displayName || user.email?.split('@')[0] || 'Anonymous';
+        await setDoc(userRef, {
+          username: username,
+          email: user.email,
+        });
+      }
+
+      // After Google login, get username from Firestore
+      const updatedDoc = await getDoc(userRef);
+      if (updatedDoc.exists()) {
+        const data = updatedDoc.data();
+        setUser(data.username);
+        localStorage.setItem('currentUsername', data.username);
+      }
+
+      navigate('/ProfilePage');
+    } catch (error) {
+      console.error(error);
+      setAuthing(false);
+    }
+  };
+
   return (
     <div className="signup-container">
       <form onSubmit={handleSubmit}>
@@ -44,18 +98,28 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
           placeholder="email@gmail.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          required
         /><br />
         <input
           type="password"
           placeholder="password1234"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         /><br />
         <button type="submit">Login</button>
 
         {error && <p className="error-message">{error}</p>}
         {message && <p className="success-message">{message}</p>}
-      </form>
+      </form>        
+      <button
+        className="google-button"
+        onClick={signInWithGoogle}
+        disabled={authing}
+        style={{ marginTop: '10px' }}
+      >
+        Sign In with Google
+      </button>
     </div>
   );
 };

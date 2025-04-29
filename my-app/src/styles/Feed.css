@@ -1,0 +1,83 @@
+.feed-container {
+    width: calc(100% - 100px);
+    height: 91.85%;
+    background: linear-gradient(360deg, rgb(127, 171, 253), rgb(252, 140, 149));
+    border-radius: 20px 0 0 20px;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.create-post-button{
+    background-color: #ff7777;
+    color: white;
+    padding: 0px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.create-post-button:hover{
+    background-color: #fe2020;
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+.post-card {
+    background: linear-gradient(135deg, #f5b5d9, #b5c8f5);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    transition: transform 0.2s;
+}
+  
+.post-card:hover {
+    transform: translateX(-5px);
+}
+
+.post-actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+  
+.delete-button {
+    padding: 8px 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffaaaa;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.delete-button:hover {
+    background-color: #ff6f6f;
+    color: white;
+}  
+  
+.like-button {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+  
+.like-button:hover {
+    background-color: #d4d4d4;
+}
+  
+.like-button.liked {
+    background-color: #ff8fa3;
+    color: white;
+}  
