@@ -1,37 +1,70 @@
-import '../styles/ConcertsPage.css'
 import { useState } from "react";
-import axios from "axios";
+import { searchConcerts } from "../api/ticketmasterApi";
+import '../styles/ConcertsPage.css';
 
-export default function Concerts() {
-  const [city, setCity] = useState("");
-  const [events, setEvents] = useState([]);
+interface Event {
+  id: string;
+  name: string;
+  dates: {
+    start: {
+      localDate: string;
+      localTime: string;
+    };
+  };
+  _embedded: {
+    venues: {
+      name: string;
+      city: {
+        name: string;
+      };
+    }[];
+  };
+  url: string;
+}
 
-  const getConcerts = async () => {
-    const response = await axios.get(`http://localhost:8000/concerts?city=${city}`);
-    setEvents(response.data._embedded?.events || []);
+const ConcertPage: React.FC = () => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<Event[]>([]);
+
+  const handleSearch = async () => {
+    const concerts = await searchConcerts(query);
+    setResults(concerts);
   };
 
   return (
-    <div className='concert-container'>
-    <div className="search-box">
+    <div className="concert-container">
+    <div style={{ padding: "20px" }}>
+      <h2>Find a Concert</h2>
       <input
         type="text"
-        placeholder="See what's near you"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="search-box2"
+        value={query}
+        placeholder="Search artist or concert"
+        onChange={(e) => setQuery(e.target.value)}
+        style={{ padding: "10px", width: "300px", marginRight: "10px" }}
       />
-      <button onClick={getConcerts} className="search-button">Search</button>
+      <button className='search-box' onClick={handleSearch} style={{ padding: "10px 20px" }}>
+        Search
+      </button>
 
-      <div>
-        {events.map((event: any) => (
-          <div key={event.id} className="song-card">
-            <h2>{event.name}</h2>
-            <p>{event.dates.start.localDate}</p>
+      <div style={{ marginTop: "20px" }}>
+        {results.map((event) => (
+          <div key={event.id} style={{ marginBottom: "20px" }}>
+            <h3>{event.name}</h3>
+            <p>
+              {event._embedded.venues[0].name} ({event._embedded.venues[0].city.name})
+            </p>
+            <p>
+              {event.dates.start.localDate} {event.dates.start.localTime}
+            </p>
+            <a href={event.url} target="_blank" rel="noopener noreferrer">
+              Buy Tickets Here!
+            </a>
           </div>
         ))}
       </div>
     </div>
     </div>
   );
-}
+};
+
+export default ConcertPage;
