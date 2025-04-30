@@ -8,7 +8,7 @@ Quality Assurance Tester:
 
 
 # About Our Software
-We developing a music streaming website that provides an interactive and unique experience for its users. We are going to focus on user engagement, music discovery, and user-based content. Our goal is to create a streaming platform where users can share and experience music in a more personal and social way.
+Our project "Impressions Audio" is a full stack music streaming website that combines personalized music discovery with a soical media presence.
 
 
 ## Platforms Tested on
