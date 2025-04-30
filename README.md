@@ -19,7 +19,7 @@ We developing a music streaming website that provides an interactive and unique 
 - Windows
 # Important Links
 Kanban Board: https://github.com/orgs/CSC-3380-Spring-2025/projects/39 \
-Designs: [link]\
+Designs: https://www.figma.com/design/wEQqvldOeGC0xVJ6ok2ULm/Impressions-Audio?node-id=50-3&p=f \
 Styles Guide(s): [link]
 
 # How to Run Dev and Test Environment
