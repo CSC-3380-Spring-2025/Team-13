@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'; // NEW for Firestore
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import '../styles/LoginPage.css';
 
@@ -16,10 +16,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
   const [authing, setAuthing] = useState(false);
 
   const auth = getAuth();
-  const db = getFirestore(); // NEW
+  const db = getFirestore();
   const navigate = useNavigate();
 
-  // Standard email/password login
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError('');
@@ -29,7 +28,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // ✅ Fetch username from Firestore after login
       const userDoc = await getDoc(doc(db, "users", user.uid));
       if (userDoc.exists()) {
         const data = userDoc.data();
@@ -53,20 +51,16 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
     }
   };
 
-  // Google login
   const signInWithGoogle = async () => {
     setAuthing(true);
 
     try {
       const response = await signInWithPopup(auth, new GoogleAuthProvider());
       const user = response.user;
-
-      // ✅ Check if user already exists in Firestore
       const userRef = doc(db, "users", user.uid);
       const userDoc = await getDoc(userRef);
 
       if (!userDoc.exists()) {
-        // If no user document exists, create one with displayName or email
         const username = user.displayName || user.email?.split('@')[0] || 'Anonymous';
         await setDoc(userRef, {
           username: username,
@@ -74,7 +68,6 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
         });
       }
 
-      // After Google login, get username from Firestore
       const updatedDoc = await getDoc(userRef);
       if (updatedDoc.exists()) {
         const data = updatedDoc.data();
@@ -92,7 +85,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ setUser }) => {
   return (
     <div className="signup-container">
       <form onSubmit={handleSubmit}>
-        <h5>Login to your account!</h5>
+        <h5>Login to your IA account!</h5>
         <input
           type="email"
           placeholder="email@gmail.com"

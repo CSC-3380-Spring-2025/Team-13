@@ -3,7 +3,9 @@ import '../styles/Settings.css'
 
 const Settings = () => {
   return (
-    <div className='settings-container'></div>
+    <div className='settings-container'>
+      <h1>WORK IN PROGRESS</h1>
+    </div>
   )
 }
 

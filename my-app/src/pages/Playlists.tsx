@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/SearchPage.css';
+import '../styles/Playlists.css';
 
 interface SearchProps {
   setSelectedTrack: (track: any) => void;
@@ -75,6 +76,7 @@ export default function Playlists({ setSelectedTrack }: SearchProps) {
 
   return (
     <div className="search-container">
+      <div className="top-songs">Top Songs</div>
       <div className="song-cards-container">
         {tracks.map((track: any) => (
           <div
