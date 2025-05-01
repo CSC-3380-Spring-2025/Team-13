@@ -17,7 +17,7 @@ const searchTracks = [
   {
     id: "song2",
     name: "Stargazing",
-    artists: [{ name: "Tervis Scoot" }],
+    artists: [{ name: "Travis Scott" }],
     album: { images: [{ url: "https://i.scdn.co/image/ab67616d0000b273072e9faef2ef7b6db63834a3" }] }
   },
   {
@@ -84,7 +84,7 @@ export default function SearchPage({ setSelectedTrack }: SearchProps) {
       const response = await axios.get('https://www.googleapis.com/youtube/v3/search', {
         params: {
           part: 'snippet',
-          maxResults: 10,
+          maxResults: 50,
           q: query,
           key: YOUTUBE_API_KEY,
           type: 'video'
