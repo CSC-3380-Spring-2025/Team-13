@@ -37,14 +37,14 @@ const CreatePost: React.FC = () => {
 
   return (
     <div className="create-post-container">
-      <h2>Create a New Post!</h2>
+      <h2>Create a New Concert Post!</h2>
       <form onSubmit={handleSubmit}>
         {username && (
-          <p className='post-username'><strong>Posting as: {username}</strong></p>
+          <p className='post-username'><strong>@{username}</strong></p>
         )}
         <input
           type="text"
-          placeholder="Concert attended"
+          placeholder="What concert did you attend?"
           value={concert}
           onChange={(e) => setConcert(e.target.value)}
           required
@@ -56,8 +56,8 @@ const CreatePost: React.FC = () => {
           onChange={(e) => setSongClip(e.target.value)}
           required
         /><br />
-        <textarea
-          placeholder="Description"
+        <input
+          placeholder="What's on your mind?"
           value={extraContent}
           onChange={(e) => setExtraContent(e.target.value)}
         /><br />
