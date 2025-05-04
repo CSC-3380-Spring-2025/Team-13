@@ -1,0 +1,57 @@
+import React, { useState } from "react";
+
+const MusicSearch = () => {
+  const [query, setQuery] = useState("");
+  const [lyrics, setLyrics] = useState("");
+  const [videoUrl, setVideoUrl] = useState("");
+
+  const handleSearch = async () => {
+    const res = await fetch(`/search?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+
+    if (res.ok) {
+      setLyrics(data.lyrics);
+      setVideoUrl(data.youtube_url);
+    } else {
+      setLyrics("Error: " + data.error);
+      setVideoUrl("");
+    }
+  };
+
+  return (
+    <div>
+      <h1>Music Search</h1>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Enter song name..."
+      />
+      <button onClick={handleSearch}>Search</button>
+
+      {lyrics && (
+        <div>
+          <h2>Lyrics</h2>
+          <pre>{lyrics}</pre>
+        </div>
+      )}
+
+      {videoUrl && (
+        <div>
+          <h2>Music Video</h2>
+          <iframe
+            width="560"
+            height="315"
+            src={videoUrl.replace("watch?v=", "embed/")}
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            title="YouTube Video"
+          ></iframe>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MusicSearch;
