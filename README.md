@@ -1,9 +1,9 @@
 # [Impressions Audio] : [Team-13]
 # Members
-Project Manager: [Nene F] ([nfall3])\
-Communications Lead: [Bryce M] ([thebrycemorris])\
-Git Master: [Kevin R] ([punnpunn11])\
-Design Lead: [Taya D] ([t-soleil])\
+Project Manager: [Nene Fall] ([nfall3])\
+Communications Lead: [Bryce Morris] ([thebrycemorris])\
+Git Master: [Kevin Ray] ([punnpunn11])\
+Design Lead: [Taya Dickens] ([t-soleil])\
 Quality Assurance Tester:
 
 
