@@ -8,8 +8,7 @@ Design Lead: [Taya Dickens] ([t-soleil])\
 # About Our Software
 Impressions Audio is a music website committed to bringing you closer with other listeners. From being able to post to the feed, to even being able to message other concertgoers, we want people to make more friends through similar music tastes!
 
-## Platforms Tested on
-We tested the website on
+## Browsers We Tested on
 - MacOS and iOS (Safari)
 - Windows (Chrome)
 
