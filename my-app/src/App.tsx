@@ -49,7 +49,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
           element={<AuthRoute>
             <Home />
             </AuthRoute>} />
-          <Route path="/SearchPage" element={<SearchPage setSelectedTrack={setSelectedTrack}
+          <Route path="/SearchPage" element={<SearchPage
           />} />
           <Route path="/player/:id" element={<PlayerPage />} />
           <Route path="/Playlists" element={<Playlists setSelectedTrack={setSelectedTrack}/>} />

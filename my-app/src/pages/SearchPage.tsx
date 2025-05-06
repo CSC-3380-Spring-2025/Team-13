@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../styles/SearchPage.css';
 
-interface SearchProps {
-  setSelectedTrack: (track: any) => void;
-}
-
 const searchTracks = [
   {
     id: "song1",
@@ -72,7 +68,7 @@ const searchTracks = [
 
 const YOUTUBE_API_KEY = "AIzaSyAO5UY1Iz3Se1c83YFQZ9u4Plot8Yuur8c";
 
-export default function SearchPage({ setSelectedTrack }: SearchProps) {
+export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [tracks, setTracks] = useState<any[]>(searchTracks);
   const navigate = useNavigate();
@@ -102,6 +98,7 @@ export default function SearchPage({ setSelectedTrack }: SearchProps) {
     } catch (error) {
       console.error("Error fetching YouTube videos:", error);
     }
+    
   };
 
   return (
