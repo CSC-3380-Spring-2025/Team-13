@@ -19,61 +19,43 @@ Impressions Audio aims to deliver more than just streaming services; it offers a
 - MacOS and iOS (Safari)
 - Windows (Google Chrome and Microsoft Edge)
 
-# Important Links!!
+# Important Links
 Kanban Board: https://github.com/orgs/CSC-3380-Spring-2025/projects/39 \
 Designs: https://www.figma.com/design/wEQqvldOeGC0xVJ6ok2ULm/Impressions-Audio?node-id=50-3&p=f 
 https://www.figma.com/board/hkUlrGxllt1bFIr7P9la2K/Music-Business-Website-in-Black-White-Modern-Luxe-Style?node-id=0-90&t=UM9fXEbIhKlDjRGj-0 
 Styles Guide(s): [link]
 
-# How to run our website after cloning!
-Once main has been cloned, type these commands in the terminal:
-cd  my-app
-npm install
-npm start
+# How to run dev and test environment
 
-# Dependencies we installed and used!!
-"@testing-library/dom": "^10.4.0",
-        "@testing-library/jest-dom": "^6.6.3",
-        "@testing-library/react": "^16.2.0",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/jest": "^27.5.2",
-        "@types/node": "^16.18.126",
-        "@types/react-dom": "^19.0.4",
-        "axios": "^1.9.0",
-        "firebase": "^11.6.1",
-        "react": "^19.0.0",
-        "react-dom": "^19.0.0",
-        "react-redux": "^9.2.0",
-        "react-router-dom": "^7.5.2",
-        "react-scripts": "^5.0.1",
-        "typescript": "^4.9.5",
-        "web-vitals": "^2.1.4"
-
-# Downloading Dependencies
-Node.js is one dependency that must be downloaded for the website to work. Go to https://nodejs.org/en/ and download the latest version. In the VS Code terminal, type "node -v" or "npm -v" once node.js is completed downloading to make sure it is on the correct version
+# Dependencies we installed and their versions
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.126",
+    "@types/react-dom": "^19.0.4",
+    "axios": "^1.9.0",
+    "firebase": "^11.6.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.5.2",
+    "react-scripts": "^5.0.1",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
 
 ## Commands
-Describe how the commands and process to launch the project on the main branch in such a way that anyone working on the project knows how to check the affects of any code they add.
+1. If the repository has not yet been cloned, run this command in terminal:
+git clone https://github.com/CSC-3380-Spring-2025/Team-13.git
 
-```sh
-Example terminal command syntax
-```
+or copy the url and clone it manually in VS Code:
+Clone Git Repository, paste url
+Create a new folder, set it as the repository destination, and click open
 
-It is very common in these sections to see code in peculiar boxes to help them stand out. Check the markdown section of the Project Specifications to see how to add more / customize these.
-
-```python
-def code_highlight_example(m: int, m: float, s: str) -> str:
-	return s + str(n*m)
-```
-
-```java
-public static void main(String[] args){
-	System.out.println("Hello, World!");
-}
-```
-
-```c#
-static void Main(){
-	Console.WriteLine("Hello, World!");
-}
-```
+2. After cloning, change directories into my-app:
+cd  my-app
+3. Once this is done, install the dependencies with npm using this command:
+npm install
+4. Once the dependencies have been installed, launch the website with:
+npm start
