@@ -23,6 +23,7 @@ Impressions Audio aims to deliver more than just streaming services; it offers a
 Kanban Board: https://github.com/orgs/CSC-3380-Spring-2025/projects/39 \
 Designs: https://www.figma.com/design/wEQqvldOeGC0xVJ6ok2ULm/Impressions-Audio?node-id=50-3&p=f 
 https://www.figma.com/board/hkUlrGxllt1bFIr7P9la2K/Music-Business-Website-in-Black-White-Modern-Luxe-Style?node-id=0-90&t=UM9fXEbIhKlDjRGj-0 
+
 Styles Guide(s): https://docs.google.com/document/d/11XM-QwGBdzvSTMF3mpKUcOlpY0VMsjepQ72d8YCSxfE/edit?usp=sharing
 
 # How to run dev and test environment
