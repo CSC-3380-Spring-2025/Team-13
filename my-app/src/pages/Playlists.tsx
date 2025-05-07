@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import '../styles/SearchPage.css';
 import '../styles/Playlists.css';
 
-interface SearchProps {
-  setSelectedTrack: (track: any) => void;
-}
-
 const searchTracks = [
   // All of these are placecards
   {
