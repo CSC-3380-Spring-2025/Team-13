@@ -1,10 +1,10 @@
 .signup-container {
   width: 300px;
-  margin: 100px auto;
-  padding: 20px;
-  border: 2px solid #ccc;
+  margin: auto;
+  padding: 80px;
+  border: 2px solid rgba(49, 48, 48, 0.642);
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
   background-color: #3c3c3c;
   text-align: center;
 }

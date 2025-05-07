@@ -8,6 +8,7 @@ interface SearchProps {
 }
 
 const searchTracks = [
+  // All of these are placecards
   {
     id: "song1",
     name: "Nokia",
@@ -17,7 +18,7 @@ const searchTracks = [
   {
     id: "song2",
     name: "Stargazing",
-    artists: [{ name: "Tervis Scoot" }],
+    artists: [{ name: "Travis Scott" }],
     album: { images: [{ url: "https://i.scdn.co/image/ab67616d0000b273072e9faef2ef7b6db63834a3" }] }
   },
   {
@@ -70,7 +71,7 @@ const searchTracks = [
   },
 ];
 
-export default function Playlists({ setSelectedTrack }: SearchProps) {
+export default function Playlists() {
   const [tracks] = useState<any[]>(searchTracks);
   const navigate = useNavigate();
 

@@ -17,17 +17,17 @@ import Settings from './pages/Settings';
 import SearchPage from './pages/SearchPage';
 import PlayerPage from './pages/PlayerPage';
 import ProfilePage from './pages/ProfilePage';
+import CreatePost from './pages/CreatePost';
+
 import { initializeApp } from 'firebase/app';
 import { config } from './config/config';
 import AuthRoute from './components/AuthRoute';
-import CreatePost from './pages/CreatePost';
 
 initializeApp(config.firebaseConfig);
 
 export interface IApplicationProps {}
 
 const Application: React.FunctionComponent<IApplicationProps> = (props) => {
-  const [selectedTrack, setSelectedTrack] = useState<string | null>(null);
   const [user, setUser] = useState<string | null>(null);
   const [showLogin, setShowLogin] = useState<boolean>(true);
 
@@ -52,7 +52,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
           <Route path="/SearchPage" element={<SearchPage
           />} />
           <Route path="/player/:id" element={<PlayerPage />} />
-          <Route path="/Playlists" element={<Playlists setSelectedTrack={setSelectedTrack}/>} />
+          <Route path="/Playlists" element={<Playlists />} />
           <Route path="/Feed" element={<Feed />} />
           <Route path='/Create' element={<CreatePost />} />
           <Route path="/ConcertsPage" element={<ConcertsPage />} />
@@ -65,7 +65,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
               user ? (
                 <div className='profile-container'>
                   <h2>Welcome, {user}!</h2>
-                  <button className='profile-logoutbutton' onClick={() => setUser(null)}>Log out</button>
+                  <button className='profile-logoutbutton' onClick={() => setUser(null)}>Log Out</button>
                 </div>
               ) : (
                 <div className="login-container">
@@ -74,7 +74,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
                       <LoginPage setUser={setUser} />
                       <p className='account-login'>
                         Don't have an account?{" "}
-                        <button onClick={() => setShowLogin(false)}>Sign up</button>
+                        <button onClick={() => setShowLogin(false)}>Sign Up!</button>
                       </p>
                     </>
                   ) : (

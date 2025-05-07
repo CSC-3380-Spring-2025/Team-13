@@ -33,31 +33,31 @@ const ConcertPage: React.FC = () => {
 
   return (
     <div className="concert-container">
-    <div style={{ padding: "20px" }}>
-      <h2>Find a Concert</h2>
+    <h2>Find a Concert</h2>
+    <div className="concert-search-box">
       <input
         type="text"
         value={query}
         placeholder="Search artist or concert"
         onChange={(e) => setQuery(e.target.value)}
-        style={{ padding: "10px", width: "300px", marginRight: "10px" }}
+        className="concert-search-box2"
       />
-      <button className='search-box' onClick={handleSearch} style={{ padding: "10px 20px" }}>
-        Search
+      <button onClick={handleSearch} className='concert-search-button'>Search
       </button>
 
-      <div style={{ marginTop: "20px" }}>
+      <div className="concert-cards-container">
         {results.map((event) => (
-          <div key={event.id} style={{ marginBottom: "20px" }}>
-            <h3>{event.name}</h3>
-            <p>
-              {event._embedded.venues[0].name} ({event._embedded.venues[0].city.name})
-            </p>
-            <p>
-              {event.dates.start.localDate} {event.dates.start.localTime}
-            </p>
+          <div key={event.id} className="concert-card">
+            <div className="ticket-name">{event.name}</div>
+            <div className="ticket-event">
+            {event._embedded.venues[0].name}
+            <div className="concert-city">({event._embedded.venues[0].city.name})</div>
+            </div>
+            <div>
+              {event.dates.start.localDate}
+            </div>
             <a href={event.url} target="_blank" rel="noopener noreferrer">
-              Buy Tickets Here!
+              <button className="tickets-button">Buy Tickets Here!</button>
             </a>
           </div>
         ))}

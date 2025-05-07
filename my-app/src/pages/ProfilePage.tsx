@@ -42,7 +42,8 @@ const ProfilePage: React.FC<ProfilePageProps> = ({ user, setUser }) => {
     <div className="profile-page">
       <div className="profile-header">
         <img
-          src="https://ih1.redbubble.net/image.1046392278.3346/raf,360x360,075,t,fafafa:ca443f4786.jpg" // Dummy profile picture
+          src="https://ih1.redbubble.net/image.1046392278.3346/raf,360x360,075,t,fafafa:ca443f4786.jpg" 
+          // Dummy profile picture...in further development we will implement a feature to change your pfp
           alt="Profile"
           className="profile-pic"
         />

@@ -1,8 +1,10 @@
+# no longer used since we swapped to the YouTube Api
+
 from fastapi import FastAPI # type: ignore
 import spotipy # type: ignore
 from spotipy.oauth2 import SpotifyClientCredentials # type: ignore
 import requests # type: ignore
-import os
+import os # type: ignore
 
 app = FastAPI()
 

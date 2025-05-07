@@ -4,7 +4,8 @@ import '../styles/Settings.css'
 const Settings = () => {
   return (
     <div className='settings-container'>
-      <h1>WORK IN PROGRESS</h1>
+      <h2>Change your password</h2>
+      <button className='password-button'>Click here!</button>
     </div>
   )
 }

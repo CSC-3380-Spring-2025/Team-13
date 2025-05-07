@@ -103,10 +103,11 @@ export default function SearchPage() {
 
   return (
     <div className="search-container">
+      <h2>Search for Songs</h2>
       <div className="search-box">
         <input
           type="text"
-          placeholder="Search your favorite songs here"
+          placeholder="What's on your mind today?"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="search-box2"

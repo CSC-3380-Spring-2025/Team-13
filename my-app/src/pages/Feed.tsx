@@ -19,7 +19,7 @@ const Feed: React.FC = () => {
     const defaultPosts: Post[] = [
       {
         id: 1,
-        username: 'musiclover01',
+        username: 'username1',
         concert: 'Grand National Tour',
         songClip: 'Not Like Us',
         extraContent: "Best Night Out!",
@@ -27,7 +27,7 @@ const Feed: React.FC = () => {
       },
       {
         id: 2,
-        username: 'concertcrazy22',
+        username: 'username2',
         concert: 'Drake World Tour',
         songClip: 'Take Care',
         extraContent: "The GOAT!",
