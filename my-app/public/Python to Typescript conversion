@@ -1,0 +1,261 @@
+import axios from 'axios';
+
+// Base URL for Musixmatch API
+const BASE_URL: string = "https://api.musixmatch.com/ws/1.1/";
+
+// API Key for Musixmatch
+const API_KEY: string = "03319088e9acd1f4bf90c5302462a1b2";
+
+// API Methods Dictionary
+const API_METHODS: Record<string, string> = {
+    "track.search": "Search for Tracks or Artist",
+    "chart.tracks.get": "Get Top Charting Tracks",
+    "chart.artists.get": "Get Top Charting Artist",
+};
+
+// API Parameters Dictionary
+const API_PARAMETERS: Record<string, string[]> = {
+    "track.search": ["q_artist", "q_track", "q_lyrics", "page", "page_size"],
+    "chart.tracks.get": ["page", "page_size", "country"],
+    "chart.artists.get": ["page", "page_size", "country"],
+};
+
+// Type definitions
+interface MusixmatchResponse {
+    message: {
+        header: {
+            status_code: number;
+            execute_time: number;
+        };
+        body: any;
+    };
+}
+
+interface Track {
+    track_name: string;
+    artist_name: string;
+    album_name: string;
+    track_rating: number;
+}
+
+interface TrackData {
+    track: Track;
+}
+
+interface Artist {
+    artist_name: string;
+}
+
+interface ArtistData {
+    artist: Artist;
+}
+
+interface Lyrics {
+    lyrics_body: string;
+}
+
+async function musixmatchRequest(method: string, params: Record<string, string>): Promise<MusixmatchResponse | null> {
+    /**
+     * Makes a request to the Musixmatch API dynamically.
+     */
+    if (method !== "matcher.lyrics.get" && !(method in API_METHODS)) {
+        console.log("Error: Invalid Search Option.");
+        return null;
+    }
+
+    let url: string = `${BASE_URL}${method}?apikey=${API_KEY}`;
+    
+    for (const [key, value] of Object.entries(params)) {
+        url += `&${key}=${encodeURIComponent(value)}`;
+    }
+
+    try {
+        const response = await axios.get(url);
+        return response.data;
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            if (error.response?.status === 401) {
+                console.log("Error 401: Unauthorized - Invalid API key.");
+            } else if (error.response?.status === 404) {
+                console.log("Error 404: Not Found - Invalid request or data not found.");
+            } else {
+                console.log(`Error: ${error.message}`);
+            }
+        } else {
+            console.log("Error: Failed to make request.");
+        }
+        return null;
+    }
+}
+
+function formatResults(method: string, response: MusixmatchResponse | null): void {
+    /**
+     * Formats and displays API results based on the method used.
+     */
+    
+    if (!response || !response.message || !response.message.body) {
+        console.log("Error: No data found.");
+        return;
+    }
+    
+    const body = response.message.body;
+
+    if (method === "track.search") {
+        const trackList: TrackData[] = body.track_list || [];
+        if (trackList.length === 0) {
+            console.log("\nNo tracks found.");
+            return;
+        }
+        
+        console.log("\nTrack Search Results\n");
+        for (const trackData of trackList) {
+            const track = trackData.track;
+            console.log(`\nTrack: ${track.track_name}`);
+            console.log(`Artist: ${track.artist_name}`);
+            console.log(`Album: ${track.album_name}`);
+            console.log(`Rating: ${track.track_rating}/100`);
+        }
+    } else if (method === "chart.tracks.get") {
+        const trackList: TrackData[] = body.track_list || [];
+        if (trackList.length === 0) {
+            console.log("\nNo chart data found.");
+            return;
+        }
+
+        console.log("\nTop Charting Tracks\n");
+        trackList.forEach((trackData, index) => {
+            const track = trackData.track;
+            console.log(`\nPosition #${index + 1}`);
+            console.log(`Track: ${track.track_name}`);
+            console.log(`Artist: ${track.artist_name}`);
+            console.log(`Album: ${track.album_name}`);
+        });
+    } else if (method === "chart.artists.get") {
+        const artistList: ArtistData[] = body.artist_list || [];
+        if (artistList.length === 0) {
+            console.log("\nNo chart data found.");
+            return;
+        }
+
+        console.log("\nTop Charting Artists\n");
+        artistList.forEach((artistData, index) => {
+            const artist = artistData.artist;
+            console.log(`\nPosition #${index + 1}`);
+            console.log(`Artist: ${artist.artist_name}`);
+        });
+    }
+}
+
+async function main(): Promise<void> {
+    const readline = require('readline').createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+
+    const question = (query: string): Promise<string> => 
+        new Promise(resolve => readline.question(query, resolve));
+
+    try {
+        while (true) {
+            console.log("\nWelcome to the Impressions' Audio Explorer!\n");
+            console.log("MENU OPTIONS");
+            console.log("1 - Search for Songs or Artists");
+            console.log("2 - Search for Song Lyrics");
+            console.log("0 - Exit\n");
+
+            const choice = (await question("> ")).trim();
+
+            if (choice === "0") {
+                console.log("\nHope We Left A Good Impression!\n");
+                break;
+            }
+
+            if (choice === "1") {
+                console.log("\nSearch Options:");
+                Object.entries(API_METHODS).forEach(([method, description], i) => {
+                    console.log(`${i}: ${description}`);
+                });
+                console.log("\nChoose an Option (enter number): ");
+
+                const methodChoice = (await question("> ")).trim();
+
+                try {
+                    const methodName = Object.keys(API_METHODS)[parseInt(methodChoice)];
+                    if (!methodName) {
+                        throw new Error("Invalid index");
+                    }
+
+                    const params: Record<string, string> = {};
+
+                    // Special handling for track search
+                    if (methodName === "track.search") {
+                        console.log("\nEnter at least one search term (Artist, Track Name, or Lyrics).");
+                        const qArtist = (await question("Artist Name (Press Enter to skip): ")).trim();
+                        const qTrack = (await question("Track Name (Press Enter to skip): ")).trim();
+                        const qLyrics = (await question("Lyrics Snippet (Press Enter to skip): ")).trim();
+
+                        if (!qArtist && !qTrack && !qLyrics) {
+                            console.log("\nError: You must provide at least one search term.");
+                            continue;
+                        }
+
+                        if (qArtist) params["q_artist"] = qArtist;
+                        if (qTrack) params["q_track"] = qTrack;
+                        if (qLyrics) params["q_lyrics"] = qLyrics;
+                    } else {
+                        // Standard input handling for other API calls
+                        const requiredParams = API_PARAMETERS[methodName];
+                        for (const param of requiredParams) {
+                            const userValue = (await question(`Enter value for ${param} (Press Enter to skip): `)).trim();
+                            if (userValue) {
+                                params[param] = userValue;
+                            }
+                        }
+                    }
+
+                    console.log("\nSearching for Results...");
+                    const response = await musixmatchRequest(methodName, params);
+
+                    if (response) {
+                        formatResults(methodName, response);
+                    } else {
+                        console.log("\nNo results found.");
+                    }
+                } catch (error) {
+                    console.log("Invalid choice. Try again.");
+                    continue;
+                }
+            } else if (choice === "2") {
+                const artistName = (await question("Enter Artist Name: ")).trim();
+                const trackName = (await question("Enter Track Name: ")).trim();
+
+                if (!artistName || !trackName) {
+                    console.log("\nError: Artist Name and Track Name cannot be empty.");
+                    continue;
+                }
+
+                const params: Record<string, string> = {
+                    "q_artist": artistName,
+                    "q_track": trackName
+                };
+                
+                const response = await musixmatchRequest("matcher.lyrics.get", params);
+
+                if (response) {
+                    const lyrics = response.message?.body?.lyrics?.lyrics_body || "Lyrics not found.";
+                    console.log("\nLyrics:\n");
+                    console.log(lyrics);
+                } else {
+                    console.log("\nLyrics not found.");
+                }
+            }
+        }
+    } finally {
+        readline.close();
+    }
+}
+
+// Run the application
+main().catch(error => {
+    console.error("An unexpected error occurred:", error);
+});

@@ -1,0 +1,75 @@
+from flask import Flask, request, jsonify
+import requests
+import os
+
+app = Flask(__name__)
+
+# Set API keys
+MUSIXMATCH_API_KEY = os.getenv("MUSIXMATCH_API_KEY", "03319088e9acd1f4bf90c5302462a1b2")
+YOUTUBE_API_KEY = os.getenv("YOUTUBE_API_KEY", "AIzaSyDUXguHedoN-BoymTcdbC0URLd6YOO9b98")
+
+MUSIXMATCH_BASE_URL = "https://api.musixmatch.com/ws/1.1/"
+YOUTUBE_BASE_URL = "https://www.googleapis.com/youtube/v3/search"
+
+def search_musixmatch(query):
+    url = f"{MUSIXMATCH_BASE_URL}track.search"
+    params = {
+        "apikey": MUSIXMATCH_API_KEY,
+        "q_track": query,
+        "page_size": 1,
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        track_list = response.json().get("message", {}).get("body", {}).get("track_list", [])
+        if track_list:
+            track_id = track_list[0]["track"]["track_id"]
+            return track_id
+    return None
+
+def get_lyrics(track_id):
+    url = f"{MUSIXMATCH_BASE_URL}track.lyrics.get"
+    params = {
+        "apikey": MUSIXMATCH_API_KEY,
+        "track_id": track_id,
+    }
+    response = requests.get(url, params=params)
+    if response.status_code == 200:
+        return response.json().get("message", {}).get("body", {}).get("lyrics", {}).get("lyrics_body", "Lyrics not found.")
+    return "Lyrics not found."
+
+def search_youtube(query):
+    params = {
+        "key": YOUTUBE_API_KEY,
+        "q": query,
+        "part": "snippet",
+        "type": "video",
+        "maxResults": 1,
+    }
+    response = requests.get(YOUTUBE_BASE_URL, params=params)
+    if response.status_code == 200:
+        items = response.json().get("items", [])
+        if items:
+            video_id = items[0]["id"]["videoId"]
+            return f"https://www.youtube.com/watch?v={video_id}"
+    return None
+
+@app.route("/search", methods=["GET"])
+def search():
+    query = request.args.get("query")
+    if not query:
+        return jsonify({"error": "No query provided"}), 400
+
+    track_id = search_musixmatch(query)
+    if not track_id:
+        return jsonify({"error": "Song not found"}), 404
+
+    lyrics = get_lyrics(track_id)
+    youtube_url = search_youtube(query)
+
+    return jsonify({
+        "lyrics": lyrics,
+        "youtube_url": youtube_url
+    })
+
+if __name__ == "__main__":
+    app.run(debug=True)

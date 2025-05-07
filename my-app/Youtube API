@@ -1,0 +1,60 @@
+import React, { useEffect, useState } from "react";
+
+interface YouTubeVideo {
+  title: string;
+  url: string;
+  thumbnail: string;
+}
+
+interface Props {
+  query: string; // the song name or lyrics, passed from your search bar
+}
+
+const API_KEY = "AIzaSyDUXguHedoN-BoymTcdbC0URLd6YOO9b98";
+
+const YouTubeResults: React.FC<Props> = ({ query }) => {
+  const [videos, setVideos] = useState<YouTubeVideo[]>([]);
+
+  useEffect(() => {
+    if (!query) return;
+
+    const fetchVideos = async () => {
+      const params = new URLSearchParams({
+        key: API_KEY,
+        q: query,
+        part: "snippet",
+        type: "video",
+        maxResults: "3",
+      });
+
+      const res = await fetch(`https://www.googleapis.com/youtube/v3/search?${params}`);
+      const data = await res.json();
+
+      const results = data.items.map((item: any) => ({
+        title: item.snippet.title,
+        url: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+        thumbnail: item.snippet.thumbnails.medium.url,
+      }));
+
+      setVideos(results);
+    };
+
+    fetchVideos();
+  }, [query]);
+
+  return (
+    <div>
+      <h3>Watch on YouTube</h3>
+      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        {videos.map((video, i) => (
+          <a key={i} href={video.url} target="_blank" rel="noopener noreferrer">
+            <img src={video.thumbnail} alt={video.title} style={{ width: "240px", borderRadius: "8px" }} />
+            <p>{video.title}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default YouTubeResults;
