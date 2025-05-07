@@ -36,7 +36,6 @@ const SurveyPage: React.FC = () => {
       {!submitted ? (
         <>
           <h1>Take our survey and get a generated playlist on what you like!</h1>
-
           <div className="question">
             <h3>What are you wanting to do?</h3>
             <div className="options">
@@ -46,7 +45,6 @@ const SurveyPage: React.FC = () => {
               <button onClick={() => handleActivityClick('Study')} className='button'>Study</button>
             </div>
           </div>
-
           <div className="question">
             <h3>What is your clothing style?</h3>
             <div className="options">
@@ -56,9 +54,6 @@ const SurveyPage: React.FC = () => {
               <button onClick={() => handleStyleClick('Western')} className='button'>Western</button>
             </div>
           </div>
-
-
-
           <button className="submit-button" onClick={handleSubmit}>
             Submit
           </button>
