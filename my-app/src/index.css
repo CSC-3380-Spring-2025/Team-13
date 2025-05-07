@@ -1,0 +1,22 @@
+@import url(./shared/globalStyles.css);
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  body {
+    background-image: url('Home.png'); /* Adjust path */
+    background-size: cover; /* Ensures it covers the whole screen */
+    background-position: center; /* Centers the image */
+    background-attachment: fixed; /* Keeps it fixed while scrolling */
+  }
+  
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}

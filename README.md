@@ -1,14 +1,23 @@
-# [Name of the Project] : [Team Number]
+# [Impressions Audio] : [Team-13]
 # Members
-Project Manager: [Name] ([GitHub Name])\
-Communications Lead: [Name] ([GitHub Name])\
-Git Master: [Name] ([GitHub Name])\
-Design Lead: [Name] ([GitHub Name])\
-Quality Assurance Tester: [Name] ([GitHub Name])
+Project Manager: [Nene Fall] ([nfall3])\
+Communications Lead: [Bryce Morris] ([thebrycemorris])\
+Git Master: [Kevin Ray] ([punnpunn11])\
+Design Lead: [Taya Dickens] ([t-soleil])\
+Quality Assurance Tester:
+
 
 # About Our Software
+Our project "Impressions Audio" is a full-stack music streaming website that combines personalized music discovery with a social media presence. Users can register and log in securely through an authentication system with password hashing. Once a user is logged in, they can then explore music content through integrated APIs such as YouTube for lyric and music video playback, Ticketmaster for purchasing and discovering upcoming concerts and events, and Musixmatch and Spotify API to play and listen to music straight from albums and singles. Our platform includes a variety of interactive features created to enhance the user's experience. Some of the features include:
 
-Describe a little about what the project is about here.
+1. Search Bar: Finding songs and artists.
+2. Feed Page: For users to post their concert pictures/videos, create comment posts, and interact with other users by liking their posts.
+3. Survey Page: Users are able to complete a survey that is based on their clothing choices or their current mood. After completing the survey, the website's system will generate different song recommendations based on their survey choices.
+4. Playlist: For users to save their favorite tracks.
+   
+Impressions Audio aims to deliver more than just streaming services; it offers a community-driven music experience where users can connect, share, and discover new music in an interactive way.
+
+
 ## Platforms Tested on
 - MacOS
 - Android
@@ -16,8 +25,10 @@ Describe a little about what the project is about here.
 - Linux
 - Windows
 # Important Links
-Kanban Board: [link]\
-Designs: [link]\
+Kanban Board: https://github.com/orgs/CSC-3380-Spring-2025/projects/39 \
+Designs: https://www.figma.com/design/wEQqvldOeGC0xVJ6ok2ULm/Impressions-Audio?node-id=50-3&p=f 
+https://www.figma.com/board/hkUlrGxllt1bFIr7P9la2K/Music-Business-Website-in-Black-White-Modern-Luxe-Style?node-id=0-90&t=UM9fXEbIhKlDjRGj-0 
+
 Styles Guide(s): [link]
 
 # How to Run Dev and Test Environment
