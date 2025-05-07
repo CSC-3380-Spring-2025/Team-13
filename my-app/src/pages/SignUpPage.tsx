@@ -65,7 +65,7 @@ const SignupPage: React.FC<SignUpPageProps> = ({ setUser }) => {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email@gmail.com"
+          placeholder="email@email.com"
           required
         /><br />
         <input
