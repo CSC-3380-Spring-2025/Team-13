@@ -8,7 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   body {
-    background-image: url('Home.png'); /* Adjust path */
+    background-image: url('imp home.png'); /* Adjust path */
     background-size: cover; /* Ensures it covers the whole screen */
     background-position: center; /* Centers the image */
     background-attachment: fixed; /* Keeps it fixed while scrolling */

@@ -1,37 +1,70 @@
-import '../styles/ConcertsPage.css'
 import { useState } from "react";
-import axios from "axios";
+import { searchConcerts } from "../api/ticketmasterApi";
+import '../styles/ConcertsPage.css';
 
-export default function Concerts() {
-  const [city, setCity] = useState("");
-  const [events, setEvents] = useState([]);
+interface Event {
+  id: string;
+  name: string;
+  dates: {
+    start: {
+      localDate: string;
+      localTime: string;
+    };
+  };
+  _embedded: {
+    venues: {
+      name: string;
+      city: {
+        name: string;
+      };
+    }[];
+  };
+  url: string;
+}
 
-  const getConcerts = async () => {
-    const response = await axios.get(`http://localhost:8000/concerts?city=${city}`);
-    setEvents(response.data._embedded?.events || []);
+const ConcertPage: React.FC = () => {
+  const [query, setQuery] = useState("");
+  const [results, setResults] = useState<Event[]>([]);
+
+  const handleSearch = async () => {
+    const concerts = await searchConcerts(query);
+    setResults(concerts);
   };
 
   return (
-    <div className='concert-container'>
-    <div className="search-box">
+    <div className="concert-container">
+    <h2>Find a Concert</h2>
+    <div className="concert-search-box">
       <input
         type="text"
-        placeholder="See what's near you"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="search-box2"
+        value={query}
+        placeholder="Search artist or concert"
+        onChange={(e) => setQuery(e.target.value)}
+        className="concert-search-box2"
       />
-      <button onClick={getConcerts} className="search-button">Search</button>
+      <button onClick={handleSearch} className='concert-search-button'>Search
+      </button>
 
-      <div>
-        {events.map((event: any) => (
-          <div key={event.id} className="song-card">
-            <h2>{event.name}</h2>
-            <p>{event.dates.start.localDate}</p>
+      <div className="concert-cards-container">
+        {results.map((event) => (
+          <div key={event.id} className="concert-card">
+            <div className="ticket-name">{event.name}</div>
+            <div className="ticket-event">
+            {event._embedded.venues[0].name}
+            <div className="concert-city">({event._embedded.venues[0].city.name})</div>
+            </div>
+            <div>
+              {event.dates.start.localDate}
+            </div>
+            <a href={event.url} target="_blank" rel="noopener noreferrer">
+              <button className="tickets-button">Buy Tickets Here!</button>
+            </a>
           </div>
         ))}
       </div>
     </div>
     </div>
   );
-}
+};
+
+export default ConcertPage;

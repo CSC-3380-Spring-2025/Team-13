@@ -19,18 +19,18 @@ const Feed: React.FC = () => {
     const defaultPosts: Post[] = [
       {
         id: 1,
-        username: 'musiclover01',
-        concert: 'Taylor Swift - Eras Tour',
-        songClip: 'https://open.spotify.com/track/5snyhxAh2z5BKyJxY0k9jd',
-        extraContent: "Best night of my life!",
+        username: 'kennylover21',
+        concert: 'Grand National Tour',
+        songClip: 'Not Like Us',
+        extraContent: "Saw the GOAT!",
         liked: false,
       },
       {
         id: 2,
-        username: 'concertcrazy22',
-        concert: 'Drake - It’s All A Blur Tour',
-        songClip: 'https://open.spotify.com/track/6zSpb8dQRaw0M1dK8PBwQz',
-        extraContent: "Front row seats 🤯",
+        username: 'drakelover69',
+        concert: 'Drake World Tour',
+        songClip: '9',
+        extraContent: "6 upside down its a 9 now!",
         liked: false,
       },
     ];
@@ -53,12 +53,6 @@ const Feed: React.FC = () => {
     sessionStorage.setItem('posts', JSON.stringify(updatedPosts));
   };
 
-  const deletePost = (id: number) => {
-    const updatedPosts = posts.filter((post) => post.id !== id);
-    setPosts(updatedPosts);
-    sessionStorage.setItem('posts', JSON.stringify(updatedPosts));
-  };
-
   return (
     <div className="feed-container">
       <button className="create-post-button" onClick={() => navigate('/create')}>
@@ -69,8 +63,7 @@ const Feed: React.FC = () => {
         <div key={post.id} className="post-card">
           <h3>@{post.username}</h3>
           <p>Concert Attended: <strong>{post.concert}</strong></p>
-          <p>Favorite Song Performed:</p>
-          <p>{post.songClip}</p>
+          <p>Favorite Song Performed: <strong>{post.songClip}</strong></p>
           {post.extraContent && <p>"{post.extraContent}"</p>}
           <div className="post-actions">
             <button
@@ -78,12 +71,6 @@ const Feed: React.FC = () => {
               onClick={() => toggleLike(post.id)}
             >
               {post.liked ? 'Liked' : 'Like'}
-            </button>
-            <button
-              className="delete-button"
-              onClick={() => deletePost(post.id)}
-            >
-            Delete
             </button>
           </div>
         </div>

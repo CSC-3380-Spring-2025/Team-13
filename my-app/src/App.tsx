@@ -27,7 +27,6 @@ initializeApp(config.firebaseConfig);
 export interface IApplicationProps {}
 
 const Application: React.FunctionComponent<IApplicationProps> = (props) => {
-  const [selectedTrack, setSelectedTrack] = useState<string | null>(null);
   const [user, setUser] = useState<string | null>(null);
   const [showLogin, setShowLogin] = useState<boolean>(true);
 
@@ -49,8 +48,7 @@ const Application: React.FunctionComponent<IApplicationProps> = (props) => {
           element={<AuthRoute>
             <Home />
             </AuthRoute>} />
-          <Route path="/SearchPage" element={<SearchPage setSelectedTrack={setSelectedTrack}
-          />} />
+          <Route path="/SearchPage" element={<SearchPage />} />
           <Route path="/player/:id" element={<PlayerPage />} />
           <Route path="/Playlists" element={<Playlists />} />
           <Route path="/Feed" element={<Feed />} />

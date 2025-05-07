@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/Navbar.css";
 
@@ -19,10 +18,9 @@ const Navbar = () => {
     <div className="navbar-container">
       <h1 className="navbar-title">Impressions Audio</h1>
       <ul className="navbar-links">
-        <li><Link to="/">Home</Link></li>
         <li><Link to="/searchpage">Search</Link></li>
         <li><Link to="/feed">Feed</Link></li>
-        <li><Link to="/playlists">Playlists</Link></li>
+        <li><Link to="/playlists">Top Songs</Link></li>
         <li><Link to="/concertspage">Concerts</Link></li>
         <li><Link to="/surveypage">Survey</Link></li>
       </ul>

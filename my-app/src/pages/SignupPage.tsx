@@ -1,25 +1,52 @@
 import React, { useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 import '../styles/SignUpPage.css';
 
-const SignupPage: React.FC = () => {
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+interface SignUpPageProps {
+  setUser: (name: string) => void;
+}
+
+const SignupPage: React.FC<SignUpPageProps> = ({ setUser }) => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const auth = getAuth();
+  const db = getFirestore();
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setError('');
+    setMessage('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+        username: username,
+        email: email,
       });
 
-      const data = await res.json();
-      alert(data.message);
-    } catch (error) {
-      console.error('Signup error:', error);
-      alert('Signup failed. Please try again.');
+      setUser(username);
+      localStorage.setItem('currentUsername', username);
+
+      setMessage('Account created successfully!');
+      navigate('/ProfilePage');
+    } catch (err: any) {
+      console.error('Signup error:', err.message);
+      if (err.code === 'auth/email-already-in-use') {
+        setError('Email already in use');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password should be at least 6 characters');
+      } else {
+        setError('Signup failed');
+      }
     }
   };
 
@@ -28,10 +55,17 @@ const SignupPage: React.FC = () => {
       <h5>Create Your Account!</h5>
       <form onSubmit={handleSignup}>
         <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          required
+        /><br />
+        <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email@gmail.com"
+          placeholder="email@email.com"
           required
         /><br />
         <input
@@ -42,8 +76,11 @@ const SignupPage: React.FC = () => {
           required
         /><br />
         <button type="submit">Sign Up</button>
+
+        {error && <p className="error-message">{error}</p>}
+        {message && <p className="success-message">{message}</p>}
       </form>
-      </div>
+    </div>
   );
 };
 

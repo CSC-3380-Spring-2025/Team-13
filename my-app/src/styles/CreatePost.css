@@ -1,6 +1,6 @@
 .create-post-container {
     width: calc(100% - 100px);
-    height: 89.2%;
+    height: auto;
     background: linear-gradient(360deg, rgb(127, 171, 253), rgb(252, 140, 149));
     border-radius: 20px 0 0 20px;
     padding: 40px;

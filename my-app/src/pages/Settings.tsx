@@ -3,7 +3,11 @@ import '../styles/Settings.css'
 
 const Settings = () => {
   return (
-    <div className='settings-container'></div>
+    <div className='settings-container'>
+      <h2>Change your password</h2>
+      <button className='password-button'>Click Here!</button>
+      </div>
+    
   )
 }
 

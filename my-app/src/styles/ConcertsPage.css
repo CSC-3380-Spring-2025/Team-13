@@ -1,32 +1,71 @@
 .concert-container {
     width: calc(100% - 100px);
-    height: 100%;
-    background: linear-gradient(360deg,rgb(127, 171, 253), rgb(252, 140, 149));
+    height: auto;
+    background: linear-gradient(360deg, rgb(127, 171, 253), rgb(252, 140, 149));
     border-radius: 20px 0 0 20px;
-    box-shadow: 2px 0 8px rgb(0, 0, 0);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.3);
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
 }
 
-.search-box{
+.concert-container h2{
+    color: white;
+    padding-left: 775px;
+}
+
+.concert-search-box{
     margin: auto;
     padding: 30px;
+    margin-top: 50px;
 }
 
-.search-box2{
+.concert-search-box2{
     padding: 10px 350px 10px 10px;
     margin: auto;
     background-color: rgb(255, 255, 255);
     border-radius: 15px;
 }
 
-.search-box input{
+.concert-search-box input{
     text-align: left;
     font-size: 1rem;
 }
 
-.search-button{
+.concert-search-button{
     padding: 10px;
     border-radius: 10px;
     background-color: rgba(3, 196, 255, 0.267);
+}
+
+.concert-cards-container{
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin-top: 50px;
+}
+
+.concert-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+  
+.concert-card:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.tickets-button{
+    padding: 10px;
+    background-color: rgb(159, 192, 255);
+}
+
+.tickets-button:hover{
+    background-color: white;
 }

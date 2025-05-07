@@ -25,7 +25,6 @@ const SurveyPage: React.FC = () => {
   const handleSubmit = () => {
     if (answers.activity && answers.style) {
       setSubmitted(true);
-      console.log('User answers:', answers);
     } else {
       alert('Please answer both questions!');
     }
@@ -60,7 +59,7 @@ const SurveyPage: React.FC = () => {
         </>
       ) : (
         <div className="result">
-          <h2>Thanks for submitting!</h2>
+          <h2>Thanks for submitting! We are working on getting generated playlists!</h2>
           <p className='mediumText'>Activity: {answers.activity}</p>
           <p className='mediumText'>Style: {answers.style}</p>
         </div>
