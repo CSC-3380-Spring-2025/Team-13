@@ -11,7 +11,7 @@ import Feed from './pages/Feed';
 import SurveyPage from './pages/SurveyPage';
 import ConcertsPage from './pages/ConcertsPage';
 import LoginPage from './pages/LoginPage';
-import SignUpPage from './pages/SignUpPage';
+import SignUpPage from './pages/SignupPage';
 import Home from './pages/Home';
 import Settings from './pages/Settings';
 import SearchPage from './pages/SearchPage';
