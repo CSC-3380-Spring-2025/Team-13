@@ -1,0 +1,87 @@
+import {
+  Home,
+  Search,
+  Library,
+  Music,
+  LogOut,
+} from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import React from "react";
+
+export default function ProfileSettings() {
+  return (
+    <div className="flex h-screen bg-black text-white">
+      {/* Sidebar */}
+      <aside className="w-64 border-r border-gray-800 p-6 space-y-8">
+        <h1 className="text-2xl font-script text-center">Impressions Audio</h1>
+        <nav className="space-y-4 text-lg">
+          <a href="#" className="block hover:text-purple-400">Home</a>
+          <a href="#" className="block hover:text-purple-400">Search</a>
+          <a href="#" className="block flex items-center justify-between hover:text-purple-400">
+            Library <span className="text-red-500">•</span>
+          </a>
+          <a href="#" className="block hover:text-purple-400">Concerts</a>
+        </nav>
+      </aside>
+
+      {/* Main content */}
+      <main className="flex-1 overflow-y-auto p-8 bg-[#121212]">
+        <div className="flex flex-col items-center">
+          {/* Profile image */}
+          <div className="relative">
+            <Avatar className="h-36 w-36">
+              <AvatarImage src="" alt="Profile" />
+              <AvatarFallback className="bg-gray-700 text-4xl">U</AvatarFallback>
+            </Avatar>
+            <Button
+              variant="ghost"
+              className="absolute bottom-0 right-0 bg-white p-1 rounded-full"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path d="M5 20h14M12 4v16m8-8H4" />
+              </svg>
+            </Button>
+          </div>
+
+          {/* Username & Status */}
+          <h2 className="text-3xl font-semibold mt-4">Username</h2>
+          <p className="text-gray-400 text-lg mb-6">Subscription Status</p>
+
+          {/* Save button */}
+          <Button className="bg-purple-500 hover:bg-purple-600 text-white mb-8">
+            Save Profile
+          </Button>
+
+          {/* Form Fields */}
+          <div className="w-full max-w-xl space-y-6">
+            {[
+              { label: "Email", type: "email" },
+              { label: "Password", type: "password" },
+              { label: "Date of Birth", type: "date" },
+              { label: "Country or Region", type: "text" },
+              { label: "Gender", type: "text" },
+            ].map((field, i) => (
+              <div key={i}>
+                <label className="block text-sm mb-1">{field.label.toUpperCase()}</label>
+                <input
+                  type={field.type}
+                  className="w-full p-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      {/* Player bar */}
+      <footer className="absolute bottom-0 left-0 right-0 bg-black border-t border-gray-800 p-4 flex justify-center items-center space-x-6">
+        <button>🔀</button>
+        <button>⏮</button>
+        <button className="bg-purple-500 rounded-full p-3">▶️</button>
+        <button>⏭</button>
+        <button>🔁</button>
+      </footer>
+    </div>
+  );
+}
