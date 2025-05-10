@@ -1,0 +1,131 @@
+import os
+import requests
+import json
+
+# Base URL for Musixmatch API
+BASE_URL = "https://api.musixmatch.com/ws/1.1/"
+
+# API Key (set as an environment variable for security)
+API_KEY = os.getenv("MUSIXMATCH_API_KEY", "03319088e9acd1f4bf90c5302462a1b2")
+
+# API Methods
+API_METHODS = {
+    "lyrics_matcher": "matcher.lyrics.get",
+    "track_matcher": "matcher.track.get",
+    "track_search": "track.search",
+    "artist_search": "artists.search",
+    "album_tracks": "album.tracks.get",
+    "track_charts": "chart.tracks.get",
+    "artist_charts": "chart.artists.get",
+    "related_artists": "artist.related.get",
+    "artist_album_getter": "artist.albums.get",
+
+}
+
+# Parameters (excluding filters)
+API_PARAMETERS = {
+    "lyrics_matcher": ["q_artist", "q_track"],
+    "track_matcher": ["q_artist", "q_track"],
+    "track_search": ["q_artist", "q_track", "page", "page_size"],
+    "artist_search": ["q_artist", "page", "page_size"],
+    "album_tracks": ["album_id", "page", "page_size"],
+    "track_charts": ["page", "page_size"],
+    "artist_charts": ["page", "page_size"],
+    "related_artists": ["artist_id", "page", "page_size"],
+    "artist_album_getter": ["artist_id", "s_release_date", "g_album_name", "page", "page_size"],
+}
+
+def musixmatch_request(method_name, **kwargs):
+    """
+    Makes a request to the Musixmatch API.
+    :param method_name: API method to call
+    :param kwargs: Parameters for the API request
+    :return: JSON response from the API
+    """
+    if method_name not in API_METHODS:
+        raise ValueError(f"Invalid API method: {method_name}")
+
+    # Construct request URL
+    endpoint = API_METHODS[method_name]
+    params = {"apikey": API_KEY}
+
+    # Include only valid parameters
+    for key, value in kwargs.items():
+        if key in API_PARAMETERS[method_name]:
+            params[key] = value
+
+    response = requests.get(BASE_URL + endpoint, params=params)
+    
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {"error": f"Request failed with status {response.status_code}"}
+
+
+def main():
+    while True:
+        print("\n Welcome to the Impressions Audios Explorer! \n")
+        print("MENU OPTIONS")
+        print("1 - Search for Songs")
+        print("2 - Search for Song Lyrics")
+        print("0 - Exit")
+
+        choice = input("> ")
+
+        if choice == "0":
+            break
+
+        elif choice == "1":
+            print("\n Choose an Option:")
+            api_methods_list = list(API_METHODS.keys())
+            for index, method in enumerate(api_methods_list):
+                print(f"{index}: {method}")
+
+            try:
+                method_choice = int(input("\nSelect an Option (0 - {}): ".format(len(api_methods_list) - 1)))
+                user_choice = api_methods_list[method_choice]
+                parameters = API_PARAMETERS[user_choice]
+
+                print("\n Available Options:")
+                for index, param in enumerate(parameters):
+                    print(f"{index}: {param}")
+
+                param_values = {}
+                while True:
+                    param_input = input("\nEnter option number to add value, or type 'x' to execute: ")
+                    if param_input.lower() == "x":
+                        break
+                    try:
+                        param_key = parameters[int(param_input)]
+                        param_value = input(f"Enter value for {param_key}: ")
+                        param_values[param_key] = param_value
+                    except (ValueError, IndexError):
+                        print("Invalid input. Try again.")
+
+                print("\n Searching for Songs...")
+                response = musixmatch_request(user_choice, **param_values)
+                print(json.dumps(response, indent=2, sort_keys=True))
+
+            except (ValueError, IndexError):
+                print("Invalid choice. Please try again.")
+
+        elif choice == "2":
+            print("\n Search for Lyrics")
+            artist_name = input("Enter Artist Name: ")
+            track_name = input("Enter Track Name: ")
+
+            response = musixmatch_request("lyrics_matcher", q_artist=artist_name, q_track=track_name)
+            lyrics = response.get("message", {}).get("body", {}).get("lyrics", {}).get("lyrics_body", "Lyrics not found.")
+
+            print("\n Lyrics:\n")
+            print(lyrics)
+
+        else:
+            print("Invalid choice. Try again.")
+
+        again = input("\nDo you want to perform another action? (y/n): ")
+        if again.lower() == "n":
+            break
+
+if __name__ == "__main__":
+    main()
